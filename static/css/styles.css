@@ -74,17 +74,10 @@ text-align: center;
 padding: 40px;
 }
 .side2-1{
-<<<<<<< HEAD
   margin-top: 50px;
     min-height: 490px;
     background-color: #fff;
     color: #777;
-=======
-margin-top: 50px;
-min-height: 490px;
-background-color: #fff;
-color: #777;
->>>>>>> 935f1df3fb310e2dd8749e884ad68e49ea7b3b90
 text-align: center;
 padding: 5px;
 }
@@ -266,7 +259,29 @@ font-size: 20px;
     color: white; /* White text color */
     background-color: #ea710d;
 }
-   
+    body {
+      animation: colorchange 50s; /* animation-name followed by duration in seconds*/
+         /* you could also use milliseconds (ms) or something like 2.5s */
+      -webkit-animation: colorchange 50s; /* Chrome and Safari */
+    }
+
+    @keyframes colorchange
+    {
+      0%   {background: red;}
+      25%  {background: yellow;}
+      50%  {background: blue;}
+      75%  {background: green;}
+      100% {background: red;}
+    }
+
+    @-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */
+    {
+      0%   {background: red;}
+      25%  {background: yellow;}
+      50%  {background: blue;}
+      75%  {background: green;}
+      100% {background: red;}
+    }
 .center{
     display: flex;
     flex-flow: row;

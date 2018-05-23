@@ -129,13 +129,9 @@ LOGIN_REDIRECT_URL = '/sell'
 LOGIN_URL = '/login/'
 #---- add/remove this section to not use dev{heroku} db 3------
 import dj_database_url
-
 DATABASES ={}
 DATABASES['default'] = dj_database_url.config()
-'''
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
-'''
+
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 #------------------------------------------------------------
 ALLOWED_HOSTS = ['*']
@@ -148,7 +144,4 @@ try:
 except ImportError:
     pass
 '''
-<<<<<<< HEAD
 #---------------------------------------
-=======
->>>>>>> 935f1df3fb310e2dd8749e884ad68e49ea7b3b90
