@@ -52,12 +52,12 @@ class Admin:
 
 class ticket(models.Model):
 	phone_number = models.IntegerField(null = True)
-	email = models.EmailField()
-	Name = models.CharField(max_length = 100, default="0")
+	email = models.EmailField(null=True)
+	Name = models.CharField(max_length = 100, default="undef")
 	pin = models.CharField(max_length = 10)
 	event = models.ForeignKey(Show, null = True)
-	seller = models.ForeignKey(profile, default ="0", null = True) #it does not show up when called
-	ticket_type = models.ForeignKey(tickettype, default = "0", null = True)
+	seller = models.ForeignKey(profile, null = True) #it does not show up when called
+	ticket_type = models.ForeignKey(tickettype, null = True)
 	status = models.BooleanField(default = False)
 	date=models.DateTimeField(default=str(datetime.date.today()))
 	def __str__(self):
