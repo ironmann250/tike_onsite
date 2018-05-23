@@ -131,7 +131,7 @@ def sell(request):
                 api.set_params(ticket_type,event,name,datetime.strftime("%d-%b at %H:%M"),pin,web_url,pin) 
                 api.set_to(tel)
                 api.set_from('Tike ltd') #Requested sender name
-                result = []#api.execute()
+                result = api.execute()
                 for r in result:
                     print (r.id, r.points, r.status)
                 total = total
