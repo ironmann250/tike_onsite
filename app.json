@@ -1,0 +1,8 @@
+{
+  "name": "tike",
+  "description": "a tike app",
+  "image": "heroku/python",
+  "repository": "https://github.com/robo360/tike.git",
+  "keywords": ["python", "django" ],
+  "addons": [ "heroku-postgresql" ]
+}

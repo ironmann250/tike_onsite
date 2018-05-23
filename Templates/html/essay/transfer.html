@@ -1,0 +1,29 @@
+{% extends 'html/essay/base.html' %}
+
+
+{% block content %}
+<main class="container" style="background-color: #fff;margin-top: 30px;">
+ <div class="loginmodal-container" style="background-color: #fff;margin-top: 30px; height: 350px;" >
+					<br>
+
+            <form method="post">
+            {% csrf_token %}
+                      <h1 class="title">Transfer Ticket</h1> 
+          
+          <input type="tel" name="tel1" placeholder="Old tel. number" required id="pin">
+          <input type="tel" name="tel2" placeholder="New tel.number" required id="pin">
+          <input type="text" name="pin" placeholder="PIN" required id="pin">
+                      <br>
+         {% if status == 1 %}
+          <p>Recent transfer was successful</p>
+          {% endif %}
+
+         {% if status == 0 %}
+          <p>Recent transfer failed</p>
+          {% endif %}
+					<input type="submit" name="login" class="login loginmodal-submit" value="Transfer" id="submit">
+				  </form>
+    </div>
+
+</main>
+{% endblock %}

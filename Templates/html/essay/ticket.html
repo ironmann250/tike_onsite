@@ -1,0 +1,23 @@
+{% extends 'html/essay/base.html' %}
+
+
+{% block content %}
+<main class="container" style="background-color: #fff;margin-top: 30px;">
+<div class="center">
+ 
+<div class="loginmodal-container" style="background-color: #fff;margin-top: 30px; height: 250px;" >
+      <p> <span class="glyphicon glyphicon-ok verifier" style="color: limegreen" aria-hidden="true"></span></p>
+       <img class="img-responsive" src="/get_qrcode/{{qr_code_info}}" alt="event logo">
+       <p>Owner : {{obj.name}}</p>
+       <p>number: {{obj.phone_number}}</p>
+       <p>event : {{obj.event}}</p>
+       <p>Seats : {{obj.ticket_type}}</p>
+       <p>date  : {{obj.date}}</p>
+       <p>pin   : {{obj.pin}}</p>
+       <p>used  : {{obj.status}}</p>
+    </div>
+</div>  
+
+
+</main>
+{% endblock %}

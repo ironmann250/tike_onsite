@@ -1,0 +1,379 @@
+<<<<<<< HEAD
+
+<!--
+	event .
+	type
+	seller .
+	pin .
+	email .
+	number .
+	name .
+	date // add date in the db
+	status
+
+	ACCOUNT
+	INCOME
+	SOLD
+
+-->
+
+{% extends 'html/essay/base.html' %}
+{% load static %}
+{% load staticfiles %}
+{% block content %}
+<main  class="main" id="sell"> 
+    <div class="container border">
+    <div class="row">
+        <div class="col-md-6 col-sm-12 side1">
+
+           <div class="loginmodal-container">
+					<br>
+            <div class="logo"><img src="{% static '/img/LOGO13.png' %}" style="height: 50%; width: 50%"></div>
+
+				  <form method="get">
+            {% csrf_token %}
+                      <h1 class="title">Sell Ticket</h1>
+
+                    <label>
+                      <select name="event">
+                      <option value=''>Event</option>
+                      {%if events %}
+                      {% for event in events %}
+                      <option>{{event}}</option>
+                      {% endfor %}
+                      {% endif %}
+                    </select>
+                      </label>
+                     <label>
+                      <select name="seller">
+                      <option value=''>Seller</option>
+                      {%if sellers %}
+                      {% for seller in sellers %}
+                      <option>{{seller}}</option>
+                      {% endfor %}
+                      {% endif %}
+                      </select>
+                      </label>
+        <input type="text" name="name" placeholder="Full Name"  id="name">
+        <input type="text" name="pin" placeholder="Pin" id="pin">
+        <input type="text" name="contacts" placeholder="Email or phone (+250)" id="contacts">
+        <label><span class="glyphicon glyphicon-alert font" aria-hidden="true"></span> Date interface under construction</label>
+        <table class="" style="display:none;">
+        	<tr>
+        		<td>
+        			<label>
+        				<p>Day
+                      <select name="day">
+                      {%if days %}
+                      {% for day in days %}
+                      <option>{{day}}</option>
+                      {% endfor %}
+                      {% endif %}
+                      </select></p>
+                      </label>
+        		</td>
+  
+        		<td>
+        			<label>
+        			<p>Month
+                      <select name="month">
+                      {%if months %}
+                      {% for month in months %}
+                      <option>{{month}}</option>
+                      {% endfor %}
+                      {% endif %}
+                      </select></p>
+                      </label>
+        		</td>
+        		<td>
+        			<label>
+        				<p>Year
+                      <select name="year">
+                      {%if years %}
+                      {% for year in years %}
+                      <option>{{year}}</option>
+                      {% endfor %}
+                      {% endif %}
+                      </select></p>
+                      </label>
+        		</td>
+        </table>
+        <input name="toolnum" value=0 type="hidden">        
+          <p id="notice"><span class="glyphicon glyphicon-alert font" aria-hidden="true"></span><span class="font"> Match the field</span></p>
+					<input type="submit" name="login" class="login loginmodal-submit" value="Search" id="submit">
+				  </form>
+				</div>
+        </div>
+        <div class="col-md-6 col-sm-12 side2-1">
+        <h2>{{event}}</h2>
+<div class="report col-sm-12">
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Search Results</a></li>
+    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Agent Stats</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane {{active_0}}" style="padding:0px;" id="home">
+      <label>Results</label>
+      	<table class="table table-condensed table-hover table-striped">
+      		<tr>
+      			<th>name</th>
+      			<th>event</th>
+      			<th>type</th>
+      			<th>pin</th>
+      			<th>seller</th>
+      			<th>date</th>
+      			<th>contacts</th>
+      			<th>used</th>
+      		</tr>
+          {%if results %}
+          {% for result in results %}
+<tr style="padding:0px;">
+{% for row in result %}
+<td>{{row}}</td>
+{% endfor %}
+</tr>
+{% endfor %}
+{% endif %}
+      	</table>
+      
+    </div>
+    <div role="tabpanel" class="tab-pane {{active_1}}" id="profile">
+        <div class="eventstab">
+        <table>
+        <form method="get">
+          {% csrf_token %}
+        <input name='toolnum' value='1' type='hidden'>
+        <td class="lt">
+         <div class="level" style="width:{{perc}}%;padding:0px;">&nbsp;{{tot_tickets}}/{{show_tickets}}&nbsp;Tickets&nbsp;Sold</div>
+         </td>
+         <td>
+         
+         	<input type="submit" name="login" class="loginmodal-submit" style="padding:12px 20px 7px 20px;font-weight:bold;font-size:14px;" value="Update" id="refresh">
+         
+         </td>
+         </form>
+        </table>
+
+        </div>
+        <div class="eventstab">
+        <table class="table table-striped table-hover">
+        <tr>
+        	<th>Agent Account</th>
+        	<th>Total Income</th>
+        	<th>Tickets Sold</th>
+        </tr>
+        {% for report in reports %}
+        <tr>
+        {% for cell in report %}
+        <td>{{cell}}</td>
+        {% endfor %}
+        </tr>
+        {% endfor %}
+        </table>
+        </div>
+        <div class='eventstab' style="display:{{err_disp}}; font-size:20px;"><label><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>You do not have the rights to use this tool!</label></div>
+        <h4> Total Sold</h4>
+        <div class="ticketstab">
+        <i class="fa fa-ticket font1" alt="sold tickets"></i> <span alt="sold tickets">{{tot_tickets}} Tickets</span>
+        </div>
+    <hr>
+    <div class="moneytab">
+        <i class="fa fa-bitcoin font1"></i><span alt="money earned">{{tot_money}} RWF</span>
+        </div>
+        </div>
+  </div>
+
+  </div>
+
+</div>
+
+        </div>
+        </div>
+   
+    </main>
+  {% endblock %}
+=======
+{% extends 'html/essay/base.html' %}
+{% load static %}
+{% load staticfiles %}
+{% block content %}
+<main  class="main" id="sell"> 
+    <div class="container border">
+    <div class="row">
+        <div class="col-md-6 col-sm-12 side1">
+
+           <div class="loginmodal-container">
+					<br>
+            <div class="logo"><img src="{% static '/img/LOGO13.png' %}" style="height: 50%; width: 50%"></div>
+
+				  <form method="get">
+            {% csrf_token %}
+                      <h1 class="title">Sell Ticket</h1>
+
+                    <label>
+                      <select name="event">
+                      <option value=''>Event</option>
+                      {%if events %}
+                      {% for event in events %}
+                      <option>{{event}}</option>
+                      {% endfor %}
+                      {% endif %}
+                    </select>
+                      </label>
+                     <label>
+                      <select name="seller">
+                      <option value=''>Seller</option>
+                      {%if sellers %}
+                      {% for seller in sellers %}
+                      <option>{{seller}}</option>
+                      {% endfor %}
+                      {% endif %}
+                      </select>
+                      </label>
+        <input type="text" name="name" placeholder="Full Name"  id="name">
+        <input type="text" name="pin" placeholder="Pin" id="pin">
+        <input type="text" name="contacts" placeholder="Email or phone (+250)" id="contacts">
+        <label><span class="glyphicon glyphicon-alert font" aria-hidden="true"></span> Date interface under construction</label>
+        <table class="" style="display:none;">
+        	<tr>
+        		<td>
+        			<label>
+        				<p>Day
+                      <select name="day">
+                      {%if days %}
+                      {% for day in days %}
+                      <option>{{day}}</option>
+                      {% endfor %}
+                      {% endif %}
+                      </select></p>
+                      </label>
+        		</td>
+  
+        		<td>
+        			<label>
+        			<p>Month
+                      <select name="month">
+                      {%if months %}
+                      {% for month in months %}
+                      <option>{{month}}</option>
+                      {% endfor %}
+                      {% endif %}
+                      </select></p>
+                      </label>
+        		</td>
+        		<td>
+        			<label>
+        				<p>Year
+                      <select name="year">
+                      {%if years %}
+                      {% for year in years %}
+                      <option>{{year}}</option>
+                      {% endfor %}
+                      {% endif %}
+                      </select></p>
+                      </label>
+        		</td>
+        </table>
+        <input name="toolnum" value=0 type="hidden">        
+          <p id="notice"><span class="glyphicon glyphicon-alert font" aria-hidden="true"></span><span class="font"> Match the field</span></p>
+					<input type="submit" name="login" class="login loginmodal-submit" value="Search" id="submit">
+				  </form>
+				</div>
+        </div>
+        <div class="col-md-6 col-sm-12 side2-1">
+        <h2>{{event}}</h2>
+<div class="report col-sm-12">
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Search Results</a></li>
+    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Agent Stats</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane {{active_0}}" style="padding:0px;" id="home">
+      <label>Results</label>
+      	<table class="table table-condensed table-hover" style="background-color:white;">
+      		<tr>
+      			<th>name</th>
+      			<th>event</th>
+      			<th>type</th>
+      			<th>pin</th>
+      			<th>seller</th>
+      			<th>date</th>
+      			<th>contacts</th>
+      			<th>used</th>
+      		</tr>
+          {%if results %}
+          {% for result in results %}
+<tr style="padding:0px;">
+{% for row in result %}
+<td>{{row}}</td>
+{% endfor %}
+</tr>
+{% endfor %}
+{% endif %}
+      	</table>
+      
+    </div>
+    <div role="tabpanel" class="tab-pane {{active_1}}" id="profile">
+        <div class="eventstab">
+        <table>
+        <form method="get">
+          {% csrf_token %}
+        <input name='toolnum' value='1' type='hidden'>
+        <td class="lt">
+         <div class="level" style="width:{{perc}}%;padding:0px;">&nbsp;{{tot_tickets}}/{{show_tickets}}&nbsp;Tickets&nbsp;Sold</div>
+         </td>
+         <td>
+         
+         	<input type="submit" name="login" class="loginmodal-submit" style="padding:12px 20px 7px 20px;font-weight:bold;font-size:14px;" value="Update" id="refresh">
+         
+         </td>
+         </form>
+        </table>
+
+        </div>
+        <div class="eventstab">
+        <table class="table table-striped table-hover">
+        <tr>
+        	<th>Agent Account</th>
+        	<th>Total Income</th>
+        	<th>Tickets Sold</th>
+        </tr>
+        {% for report in reports %}
+        <tr>
+        {% for cell in report %}
+        <td>{{cell}}</td>
+        {% endfor %}
+        </tr>
+        {% endfor %}
+        </table>
+        </div>
+        <div class='eventstab' style="display:{{err_disp}}; font-size:20px;"><label><span class="glyphicon glyphicon-alert" aria-hidden="true"></span>You do not have the rights to use this tool!</label></div>
+        <h4> Total Sold</h4>
+        <div class="ticketstab">
+        <i class="fa fa-ticket font1" alt="sold tickets"></i> <span alt="sold tickets">{{tot_tickets}} Tickets</span>
+        </div>
+    <hr>
+    <div class="moneytab">
+        <i class="fa fa-bitcoin font1"></i><span alt="money earned">{{tot_money}} RWF</span>
+        </div>
+        </div>
+  </div>
+
+  </div>
+
+</div>
+
+        </div>
+        </div>
+   
+    </main>
+  {% endblock %}
+>>>>>>> 935f1df3fb310e2dd8749e884ad68e49ea7b3b90

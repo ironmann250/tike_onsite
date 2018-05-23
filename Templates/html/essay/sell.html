@@ -1,0 +1,147 @@
+
+{% extends 'html/essay/base.html' %}
+{% load static %}
+{% load staticfiles %}
+{% block content %}
+<main  class="main" id="sell"> 
+    <div class="container border">
+    <div class="row">
+        <div class="col-md-6 col-sm-12 side1">
+
+           <div class="loginmodal-container">
+					<br>
+            <div class="logo"><img src="{% static '/img/LOGO13.png' %}" style="height: 50%; width: 50%"></div>
+<<<<<<< HEAD
+<script>
+function checkfield(theForm) {
+    if (theForm.tel.value != theForm.pass.value)
+    {
+        alert('Those phone numbers don\'t match!');
+        return false;
+    } else {
+        return true;
+    }
+}
+</script> 
+				  <form method="post" onsubmit="return checkfield(this);">
+=======
+
+				  <form method="post">
+>>>>>>> 935f1df3fb310e2dd8749e884ad68e49ea7b3b90
+            {% csrf_token %}
+                      <h1 class="title">Sell Ticket</h1>
+
+                    <label>
+                      <select name="event">
+                    {% if event %}
+                      <option>{{event}}</option>
+                    {% else %}
+                       <option>No event</option>
+                     {% endif %}
+                    </select>
+                      </label>
+                     <label>
+                      <select name="ticket_type">
+             {%if ticket_types %}
+                      {% for ticket_type in ticket_types %}
+                      <option>{{ticket_type}}</option>
+                      {% endfor %}
+              {% endif %}
+                    
+                      </select>
+                      </label>
+           <div class="center">
+          <span style="margin-right: 10px"><input type="radio" name="usage" value="0" id="emailonly" >Email </span> <span style="margin-right: 10px"><input type="radio" name="usage" value="1" checked id="telonly"> Tel</span>
+          <span style="margin-right: 10px">
+          <input name="autocheck" type="checkbox">Auto Check
+        </span>
+                      </div> 
+          <input type="text" name="name" placeholder="Full Name" id="name">
+          <input type="email" name="email" placeholder="Email" id="email">
+					<input type="tel" name="tel" placeholder="Tel number" value="+250"  id="tel">
+                      <br>
+					<input type="tel" name="pass" placeholder="Repeat Tel number" value="+250" id="repeater">
+          <p id="notice"><span class="glyphicon glyphicon-alert font" aria-hidden="true"></span><span class="font"> Match the field</span></p>
+
+					<input type="submit" name="login" class="login loginmodal-submit" value="Generate Ticket" id="submit">
+				  </form>
+				</div>
+        </div>
+        <div class="col-md-6 col-sm-12 side2">
+        <h2><i class="fa fa-line-chart" aria-hidden="true"></i> &nbsp;&nbsp;Report &amp; Status</h2>
+<div class="report col-sm-12">
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Recent Activities</a></li>
+    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Event info</a></li>
+    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Account</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home">
+      {% if action %}
+       Recent transaction failed.
+       {% else %}
+       <p>Recent transation was successful.</p>
+       {% if tel %}
+       <p>The transaction was carried on {{tel}}.</p>
+       {% endif %}
+       {% if email %}
+       <p>The transaction was carried on {{email}}.</p>
+       {% endif %}
+      {% endif %}
+    </div>
+    <div role="tabpanel" class="tab-pane" id="profile">
+        {% if event %}
+        <div class="eventstab">
+        <i class="fa fa-tags font1" aria-hidden="true"></i> <span>{{event}}</span>
+        </div>
+        <hr>
+        <h4>Description</h4>
+        <div>{{description}}</div>
+        <hr>
+        <h4>Ticket Prices</h4>
+        {% for key, value in ticketdict.items %}
+        <div class="eventstab">
+        <span>{{key}}</span> <span>{{value}} RWF</span>
+        </div>
+        {% endfor %}
+        <div class="lt">
+         <div class="level" style="width:{{perc}}%"> {{sold}}/{{total}}&nbsp;Sold</div>
+         </div>
+        </div>
+        {% else %}
+        <span class="glyphicon glyphicon-alert font1" aria-hidden="true"></span><br><span class="font1">No event selected!</span></div>
+        {% endif %}
+    <div role="tabpanel" class="tab-pane" id="messages">
+     
+    <div class="profile ">
+<span class="glyphicon glyphicon-user font1 left" aria-hidden="true" alt="username" ></span> <span class="right"> {{username}}</span>
+    </div>
+    <hr>
+    <div class="eventstab">
+        <i class="fa fa-tags font1" aria-hidden="true"></i> <span>{{event}}</span>
+        </div>
+
+     <hr>
+    <div class="ticketstab">
+        <i class="fa fa-ticket font1" alt="sold tickets"></i> <span alt="sold tickets">{{st}} Sold tickets</span>
+        </div>
+    <hr>
+    <div class="moneytab">
+        <i class="fa fa-bitcoin font1"></i><span alt="money earned">{{income}} RWF</span>
+        </div>
+    </div>
+  </div>
+
+  </div>
+
+</div>
+
+        </div>
+        </div>
+   
+    </main>
+  {% endblock %}

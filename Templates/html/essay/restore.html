@@ -1,0 +1,28 @@
+{% extends 'html/essay/base.html' %}
+
+{% load static %}
+{% block content %}
+<main style="background-color: #fff;height: 500px;">
+    
+
+           <div class="loginmodal-container" style="height: 450px;">
+					<br>
+
+            <form method="post">
+            {% csrf_token %}
+                      <h1 class="title">Restore Ticket</h1>
+                      </label>
+           <div class="center">
+          <span style="margin-right: 10px"><input type="radio" name="usage" value="email" id="emailonly" >Email </span> <span style="margin-right: 10px"><input type="radio" name="usage" value="tel" id="telonly"> Tel</span>
+                      </div> 
+          <input type="text" name="name" placeholder="Full Name"  id="name">
+          <input type="email" name="email" placeholder="Email"  id="email">
+					<input type="tel" name="tel" placeholder="Tel number"  id="tel">
+                      <br>
+					<input type="tel" name="pass" placeholder="Repeat Tel number" id="repeater">
+          <p id="notice"><span class="glyphicon glyphicon-alert font" aria-hidden="true"></span><span class="font"> Match the field</span></p>
+					<input type="submit" name="login" class="login loginmodal-submit" value="Restore Ticket" id="submit">
+				  </form>
+    </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,279 @@
+.container1{
+    margin: 0px;
+    padding-left: 0%;
+    padding-right: 0%;
+    height: 90px;
+}
+
+.element4,.element3,.element5,.element6{
+width: 25%;
+height: 90px;
+    margin-right: 2px;
+}
+main{    
+    padding: 10px;
+    background-color: #ea710d;
+}
+.footer-end{
+    margin-bottom: 0px;
+    background-color: #222;
+}
+.element1 a,.element2 a,.element3 a,.element4 a,.element5 a,.element6 a{
+
+    color: #fff;
+    text-decoration: none;
+    margin: auto 0;
+    font-size: 19px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+.tab-pane{
+    width: 100%;
+}
+
+.secondnav{
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}
+.secondnav ul li a{
+    display: flex;
+    flex-flow: column;
+    justify-content:center;
+    margin-right: 30px;
+    margin-bottom: 0px;
+    padding: 5px;
+}
+.secondnav ul li a span{
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+main .border{
+    min-height: 490px;
+    margin-top: 0px;
+    margin-bottom: 60px;
+    border: 0px solid #efeeee;
+    box-shadow: 0px 0px 0px 0px #efe8e8;
+    color: #444444;
+}
+.side1,.side2{
+    margin-top: 50px;
+    height: 490px;
+    background-color: #fff;
+}
+.side1{
+border-right: 5px solid #efeeee;
+}
+.side2{
+color: #777;
+text-align: center;
+padding: 40px;
+}
+.title{
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Merriweather Light', 'Times New Roman', serif;
+    font-size: 20px;
+}
+.loginmodal-container{
+    margin-top: 20px;
+}
+form label{
+font-size: 15px;
+}
+form input,form select{
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+form select{
+    width: 100px;
+}
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+
+/****** LOGIN MODAL ******/
+.loginmodal-container {
+  padding: 30px;
+  padding-top: 10px;
+  max-width: 350px;
+  width: 100% !important;
+  background-color: #F7F7F7;
+  margin: 0 auto;
+margin-top: -50px;
+  border-radius: 2px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  font-family: "Roboto",OpenSans,"Open Sans",Arial,sans-serif;
+    color: #777;
+}
+
+.loginmodal-container h1 {
+  text-align: center;
+  font-size: 1.8em;
+  font-family: roboto;
+    color:  #777;
+}
+
+.loginmodal-container input[type=submit] {
+  width: 90%;
+  display: block;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.loginmodal-container input[type=text],.loginmodal-container input[type=password],.loginmodal-container input[type=email],input[type=tel] {
+  height: 42px;
+  font-size: 16px;
+  width: 100%;
+  margin-bottom: 10px;elect
+  -webkit-appearance: none;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  border-top: 1px solid #c0c0c0;
+  /* border-radius: 2px; */
+  padding: 0 8px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+label{
+    width: 100%;
+}
+label select{
+      
+  height: 40px;
+  font-size: 16px;
+  width: 100%;
+  margin-bottom: 10px;elect
+  -webkit-appearance: none;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  border-top: 1px solid #c0c0c0;
+  /* border-radius: 2px; */
+  padding: 0 8px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+.loginmodal-container input[type=text]:hover, input[type=password]:hover {
+  border: 1px solid #b9b9b9;
+  border-top: 1px solid #a0a0a0;
+  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.loginmodal {
+  text-align: center;
+  font-size: 14px;
+  font-family: 'Arial', sans-serif;
+  font-weight: 700;
+  height: 36px;
+  padding: 0 8px;
+/* border-radius: 3px; */
+/* -webkit-user-select: none;
+  user-select: none; */
+}
+
+.loginmodal-submit {
+  /* border: 1px solid #3079ed; */
+  border: 0px;
+  color: #fff;
+  text-shadow: 0 1px rgba(0,0,0,0.1);
+ box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  background-color: #febf4d;
+  padding: 17px 0px;
+  font-family: roboto;
+  font-size: 24px;
+  /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
+}
+
+.loginmodal-submit:hover {
+  /* border: 1px solid #2f5bb7; */
+  border: 0px;
+  text-shadow: 0 1px rgba(0,0,0,0.3);
+  color: #febf4d;
+  background-color: #fff;
+  /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
+}
+
+.loginmodal-container a {
+  text-decoration: none;
+  color: #666;
+
+  font-weight: 400;
+  text-align: center;
+  display: inline-block;
+  opacity: 0.6;
+  transition: opacity ease 0.5s;
+}
+
+.login-help{
+  font-size: 12px;
+}
+.logo{
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}
+.nav-tabs {
+    text-align: center;
+}
+.tab-pane{
+    padding: 40px;
+}
+.font1{
+font-size: 20px;
+}
+ .font{
+    font-size: 20px;
+}
+.report{
+    font-family: "Roboto",OpenSans,"Open Sans",Arial,sans-serif;
+    font-size: 15px;
+}
+.profile,.eventstab,.ticketstab,.moneytab{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+}
+.lt{
+    width: 100%;
+    background-color: #f1cc95;
+}
+.level{
+    text-align: right; /* Right-align text */
+    padding-right: 20px; /* Add some right padding */
+    line-height: 40px; /* Set the line-height to center the text inside the skill bar, and to expand the height of the container */
+    color: white; /* White text color */
+    background-color: #ea710d;
+}
+    body {
+      animation: colorchange 50s; /* animation-name followed by duration in seconds*/
+         /* you could also use milliseconds (ms) or something like 2.5s */
+      -webkit-animation: colorchange 50s; /* Chrome and Safari */
+    }
+
+    @keyframes colorchange
+    {
+      0%   {background: red;}
+      25%  {background: yellow;}
+      50%  {background: blue;}
+      75%  {background: green;}
+      100% {background: red;}
+    }
+
+    @-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */
+    {
+      0%   {background: red;}
+      25%  {background: yellow;}
+      50%  {background: blue;}
+      75%  {background: green;}
+      100% {background: red;}
+    }
+.center{
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}
