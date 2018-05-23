@@ -57,7 +57,7 @@ class ticket(models.Model):
 	pin = models.CharField(max_length = 10)
 	event = models.ForeignKey(Show, null = True)
 	seller = models.ForeignKey(profile, null = True) #it does not show up when called
-	ticket_type = models.ForeignKey(tickettype, default = "0", null = True)
+	ticket_type = models.ForeignKey(tickettype, null = True)
 	status = models.BooleanField(default = False)
 	date=models.DateTimeField(default=str(datetime.date.today()))
 	def __str__(self):
