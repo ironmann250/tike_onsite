@@ -124,6 +124,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+WHITENOISE_MIDDLEWARE = ('whitenoise.middleware.WhiteNoiseMiddleware', ) MIDDLEWARE = WHITENOISE_MIDDLEWARE + MIDDLEWARE WHITENOISE_MAX_AGE = 60 * 60 * 24 * 365 * 10 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 LOGIN_REDIRECT_URL = '/sell'
 LOGIN_URL = '/login/'
