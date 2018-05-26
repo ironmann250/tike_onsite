@@ -51,7 +51,7 @@ class Admin:
 	pass
 
 class ticket(models.Model):
-	phone_number = models.BigIntegerField()
+	phone_number = models.BigIntegerField(null = True)
 	email = models.EmailField()
 	Name = models.CharField(max_length = 100, default="0")
 	pin = models.CharField(max_length = 10)
