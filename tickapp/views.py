@@ -148,7 +148,7 @@ def sell(request):
                 print(tel)
                 print(datetime)
                 print ('%s - %s' % (e.code, e.message))
-                return render(request,'html/essay/sell.html',{'view' : 'Sell', 'action': True, 'event': event, 'ticket_types' : ticket_types, 'action': True,'username':username,'st': st, 'income': 0,'ticketdict': ticketdict , 'total': total,'sold': sold,'perc': perc,'tel':tel})
+                return render(request,'html/essay/sell.html',{'view' : 'Sell', 'action': False, 'event': event, 'ticket_types' : ticket_types,'username':username,'st': st, 'income': 0,'ticketdict': ticketdict , 'total': total,'sold': sold,'perc': perc,'tel':e.message})
             
         
         
@@ -157,7 +157,7 @@ def sell(request):
    
 
     
-   
+        
  
             #events=list()
 '''
