@@ -130,7 +130,7 @@ def sell(request):
                 api.set_content('[%1%] ticket for the [%2%] for [%3%] on [%4%], code:[%5%]\nvisit [%6%]get_qrcode/[%7%]')
                 api.set_params(ticket_type,event,name,datetime.strftime("%d-%b at %H:%M"),pin,web_url,pin) 
                 api.set_to(tel)
-                api.set_from('Tike ltd') #Requested sender name
+                #api.set_from('Tike ltd') #Requested sender name
                 result = api.execute()
                 for r in result:
                     print (r.id, r.points, r.status)
