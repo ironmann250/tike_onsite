@@ -127,8 +127,8 @@ def sell(request):
         if usage == '1':
             try:
                 api.service('sms').action('send')
-                api.set_content('[%1%] ticket for the [%2%] for [%3%] on [%4%], code:[%5%]\nvisit [%6%]get_qrcode/[%7%]')
-                api.set_params(ticket_type,event,name,datetime.strftime("%d-%b at %H:%M"),pin,web_url,pin) 
+                api.set_content('[%1%] ticket for the [%2%] for [%3%] on [%4%], code: [%5%] ')
+                api.set_params(ticket_type,event,name,datetime.strftime("%d-%b at %H:%M"),pin) 
                 api.set_to(tel)
                 #api.set_from('Tike ltd') #Requested sender name
                 result = api.execute()
@@ -141,7 +141,7 @@ def sell(request):
                 if autocheck=='on':
                     newticket=ticket.objects.create(phone_number = tel, email= email, Name= name, pin = pin, event = eventobj, seller= sellerobj,ticket_type= tobj,status=True)
                 else:
-                    newticket= newticket= ticket.objects.create(phone_number = tel, email= email, Name= name, pin = pin, event = eventobj, seller= sellerobj,ticket_type= tobj)            
+                    newticket= ticket.objects.create(phone_number = tel, email= email, Name= name, pin = pin, event = eventobj, seller= sellerobj,ticket_type= tobj)            
                 newticket.save()
                 return render(request,'html/essay/sell.html',{'view' : 'Sell', 'event': event, 'action': False, 'ticket_types' : ticket_types, 'action': False,'username':username,'st':st,'income': 0,'ticketdict': ticketdict,'total': total,'sold': sold,'perc': perc,'tel': tel })
             except ApiError as e:
