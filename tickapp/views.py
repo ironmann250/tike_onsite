@@ -48,9 +48,9 @@ api.set_password('869579e0598bd70a216261a80507efed')
 api.auth_token = 'q6QWErR7qkI9MNzA4bJJ86fltC5KfselYYiO2DUi'
     #sending SMS
 
-def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
+def id_generator(size=4, chars=string.ascii_uppercase + string.digits):
     """
-    generate a 6 character pi that is unique in db/ticket
+    generate a 4 character pin that is unique in db/ticket
     """
     pin=''.join(random.choice(chars) for _ in range(size))
     if ticket.objects.filter(pin=pin).count() !=0:
