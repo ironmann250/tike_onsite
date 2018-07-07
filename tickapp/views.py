@@ -127,8 +127,8 @@ def sell(request):
         if usage == '1':
             try:
                 api.service('sms').action('send')
-                api.set_content('[%1%] ticket for the [%2%] for [%3%] on [%4%], code: [%5%] ')
-                api.set_params(ticket_type,event,name,datetime.strftime("%d-%b at %H:%M"),pin) 
+                api.set_content('[%1%] ticket for the [%2%] for [%3%] on [%4%], code: '+pin)
+                api.set_params(ticket_type,event,name,datetime.strftime("%d-%b at %H:%M")) 
                 api.set_to(tel)
                 #api.set_from('Tike ltd') #Requested sender name
                 result = api.execute()
