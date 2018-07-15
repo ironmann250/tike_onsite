@@ -459,7 +459,7 @@ def tools(request):
         return render(request,'html/essay/search.html',{"err_disp":'none','active_0':'active','view':'tools','days':days,'months':months,'years':years,'sellers':sellers,'events':events})
 
 def overview(request,id):
-    if True:
+    try:
         event=Show.objects.get(id=id)
         tiktypes=tickettype.objects.filter(event=event)
         profiles=profile.objects.filter(event=event)
@@ -470,7 +470,7 @@ def overview(request,id):
                 data.append([prfl.seller.username,tkt.tike_type,tkt.amount,
                     amount,amount*tkt.amount])
         return render(request,'html/essay/overview.html',locals())     
-    if False:
+    except:
         return HttpResponseRedirect('/')
 
 
