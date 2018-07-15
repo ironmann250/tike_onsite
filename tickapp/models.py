@@ -18,7 +18,7 @@ class Show(models.Model):
 		return self.title
 
 class Admin:
-	pass
+	list_display = ('title','id')
 
 class profile(models.Model):
 	seller = models.ForeignKey(User)
