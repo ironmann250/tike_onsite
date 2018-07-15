@@ -66,3 +66,7 @@ class ticket(models.Model):
 class Admin:
 	pass
 
+class ShowAdmin(admin.ModelAdmin):
+    list_display = ('title','id')
+
+
