@@ -1,0 +1,30 @@
+{% extends 'html/essay/base.html' %}
+
+{% load static %}
+{% block content %}
+<main style="background-color: #fff;height: 500px;">
+   <table>
+   	<tr>
+   		<th>Username</th>
+   		<th>Ticket Type</th>
+   		<th>Price</th>
+   		<th>Total Amount</th>
+   		<th>Total Income
+   	</tr>
+   	{% for row in data %}
+   	<tr>
+   		{% for col in row %}
+   		<td> {{col}}</td>
+   		{% endfor %}
+   	</tr>
+   	{% endfor %}
+   </table>
+</main>
+<style>
+table {
+  border-collapse: separate;
+  border-spacing: 1em 0.5em;
+  background-color: #ddd;
+}
+</style>
+{% endblock %}

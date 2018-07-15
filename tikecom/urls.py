@@ -33,7 +33,9 @@ urlpatterns = [
     url(r'^ticket/',tickapp_views.get_ticket),
     url(r'^applogin/',tickapp_views.applogin),
     url(r'^result/',tickapp_views.result),
+    url(r'^overview/(?P<id>.*)',tickapp_views.overview),
     url(r'^get_qrcode/(?P<text>.*)',tickapp_views.render_qrcode),#security vurnelability here this can act as truthness function[explanation later]
 
 
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
+urlpatterns=urlpatterns+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -458,6 +458,22 @@ def tools(request):
             return render(request,'html/essay/search.html',{"err_disp":'none','active_0':'active','view':'tools','days':days,'months':months,'years':years,'sellers':sellers,'events':events})
         return render(request,'html/essay/search.html',{"err_disp":'none','active_0':'active','view':'tools','days':days,'months':months,'years':years,'sellers':sellers,'events':events})
 
+def overview(request,id):
+    if True:
+        event=Show.objects.get(id=id)
+        tiktypes=tickettype.objects.filter(event=event)
+        profiles=profile.objects.filter(event=event)
+        data=[]
+        for prfl in profiles:
+            for tkt in tiktypes:
+                amount=ticket.objects.filter(event=event,ticket_type=tkt,seller=prfl).count()
+                data.append([prfl.seller.username,tkt.tike_type,tkt.amount,
+                    amount,amount*tkt.amount])
+        return render(request,'html/essay/overview.html',locals())     
+    if False:
+        return HttpResponseRedirect('/')
+
+
 def get_ticket(request):
     pin_=request.GET['pin']
     obj=ticket.objects.get(Q(pin__exact = pin_.upper()))
