@@ -17,9 +17,6 @@ class Show(models.Model):
 	def __str__(self):
 		return self.title
 
-class Admin:
-	list_display = ('title','id')
-
 class profile(models.Model):
 	seller = models.ForeignKey(User)
 	event = models.ForeignKey(Show, default = "0")
