@@ -76,6 +76,7 @@ def sell(request):
         tickobjs = tickettype.objects.filter(event= event)
         ticket_types=list()
         ticketdict = {}
+        
         for tickobj in tickobjs:
             ticket_types.append(tickobj.tike_type)
             element = ticket_types[-1]
@@ -93,6 +94,8 @@ def sell(request):
         event= request.POST['event']
         ticket_type = request.POST['ticket_type']
         tel= request.POST['tel']
+        name='undef'
+        email='undef'
         tel_double_check=request.POST['pass']
         autocheck='off'
         if 'autocheck' in request.POST.keys(): autocheck=request.POST['autocheck']
