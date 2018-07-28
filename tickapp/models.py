@@ -59,7 +59,7 @@ class ticket(models.Model):
 	status = models.BooleanField(default = False)
 	date=models.DateTimeField(default=str(datetime.date.today()))
 	def __str__(self):
-		return self.Name
+		return self.phone_number
 
 class Admin:
 	pass
