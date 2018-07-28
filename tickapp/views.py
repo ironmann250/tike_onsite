@@ -100,14 +100,13 @@ def sell(request):
         autocheck='off'
         if 'autocheck' in request.POST.keys(): autocheck=request.POST['autocheck']
         print autocheck
-        usage = request.POST['usage']
         pin = id_generator()
         eventobj= Show.objects.get(title = event)
         sellerobj= profile.objects.get(seller__username = username)
         tobj= tickettype.objects.get(tike_type = ticket_type)
         fee = tobj.amount
         datetime= eventobj.date 
-        if usage == '0':
+        '''if usage == '0':
             try:
                 sold1 = sold +1
                 htmlmsg = render_to_string('html/essay/email.html',{'event':event,'names': name,'ticket_type':ticket_type,'fee': fee,'date':datetime,'pin':pin,'sold':sold1})
@@ -124,32 +123,34 @@ def sell(request):
             st = st + 1
             sold = sold + 1
             perc = (sold/total)* 100
-            return render(request,'html/essay/sell.html',{'view' : 'Sell', 'action': False, 'event': event, 'ticket_types' : ticket_types, 'action': False,'username':username,'st':st,'income': 0,'ticketdict': ticketdict,'total': total,'sold': sold,'perc': perc,'email':email })
-        if usage == '1':
-            try:
-                api.service('sms').action('send')
-                api.set_content('[%1%] ticket for the [%2%] for [%3%] on [%4%], code: '+pin)
-                api.set_params(ticket_type,event,name,datetime.strftime("%d-%b at %H:%M")) 
-                api.set_to(tel)
+           
+           return render(request,'html/essay/sell.html',{'view' : 'Sell', 'action': False, 'event': event, 'ticket_types' : ticket_types, 'action': False,'username':username,'st':st,'income': 0,'ticketdict': ticketdict,'total': total,'sold': sold,'perc': perc,'email':email })
+        '''
+     
+        try:
+            api.service('sms').action('send')
+            api.set_content('[%1%] ticket for the [%2%] for [%3%] on [%4%], code: '+pin)
+            api.set_params(ticket_type,event,name,datetime.strftime("%d-%b at %H:%M")) 
+            api.set_to(tel)
                 #api.set_from('Tike ltd') #Requested sender name
-                result = api.execute()
-                for r in result:
-                    print (r.id, r.points, r.status)
-                total = total
-                st = st + 1
-                sold = sold + 1
-                perc = (sold/total)* 100  
-                if autocheck=='on':
-                    newticket=ticket.objects.create(phone_number = tel, email= email, Name= name, pin = pin, event = eventobj, seller= sellerobj,ticket_type= tobj,status=True)
-                else:
-                    newticket= ticket.objects.create(phone_number = tel, email= email, Name= name, pin = pin, event = eventobj, seller= sellerobj,ticket_type= tobj)            
-                newticket.save()
-                return render(request,'html/essay/sell.html',{'view' : 'Sell', 'event': event, 'action': False, 'ticket_types' : ticket_types, 'action': False,'username':username,'st':st,'income': 0,'ticketdict': ticketdict,'total': total,'sold': sold,'perc': perc,'tel': tel })
-            except ApiError as e:
-                print(tel)
-                print(datetime)
-                print ('%s - %s' % (e.code, e.message))
-                return render(request,'html/essay/sell.html',{'view' : view, 'action': False, 'event': event, 'ticket_types' : ticket_types,'username':username,'st': st, 'income': 0,'ticketdict': ticketdict , 'total': total,'sold': sold,'perc': perc,'tel':e.code})
+            result = api.execute()
+            for r in result:
+                print (r.id, r.points, r.status)
+            total = total
+            st = st + 1
+            sold = sold + 1
+            perc = (sold/total)* 100  
+            if autocheck=='on':
+                newticket=ticket.objects.create(phone_number = tel, email= email, Name= name, pin = pin, event = eventobj, seller= sellerobj,ticket_type= tobj,status=True)
+            else:
+                newticket= ticket.objects.create(phone_number = tel, email= email, Name= name, pin = pin, event = eventobj, seller= sellerobj,ticket_type= tobj)            
+            newticket.save()
+            return render(request,'html/essay/sell.html',{'view' : 'Sell', 'event': event, 'action': False, 'ticket_types' : ticket_types, 'action': False,'username':username,'st':st,'income': 0,'ticketdict': ticketdict,'total': total,'sold': sold,'perc': perc,'tel': tel })
+        except ApiError as e:
+            print(tel)
+            print(datetime)
+            print ('%s - %s' % (e.code, e.message))
+            return render(request,'html/essay/sell.html',{'view' : view, 'action': False, 'event': event, 'ticket_types' : ticket_types,'username':username,'st': st, 'income': 0,'ticketdict': ticketdict , 'total': total,'sold': sold,'perc': perc,'tel':e.code})
             
         
         
