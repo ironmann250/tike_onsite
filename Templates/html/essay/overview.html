@@ -4,13 +4,15 @@
 {% block content %}
 <main style="background-color: #fff;height: 500px;">
    <table style='margin:20px; padding:20px;'>
+        <thead>
    	<tr>
    		<th>Username</th>
    		<th>Ticket Type</th>
    		<th>Price</th>
    		<th>Total Amount</th>
    		<th>Total Income
-   	</tr>
+   	</tr>  
+        </thead>
    	{% for row in data %}
    	<tr>
    		{% for col in row %}
@@ -18,13 +20,15 @@
    		{% endfor %}
    	</tr>
    	{% endfor %}
+        <b>
         <tr>
-                <tf>All</tf>
-                <tf>All</tf>
-                <tf>N/A</tf>
-        {% for tot in total%}
-              <tf>tot</tf>
+	<th>All</th>
+	<th>All</th>
+	<th>Total</th>
+        {% for tot in total %}
+        <th>{{tot}}</th>
         {% endfor %}
+        </b>
         </tr>
    </table>
 </main>

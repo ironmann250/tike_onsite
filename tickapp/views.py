@@ -473,6 +473,7 @@ def overview(request,id):
                     amount,amount*tkt.amount])
                 total[0]+=amount
                 total[1]+=amount*tkt.amount
+        print total
         return render(request,'html/essay/overview.html',locals())     
     except:
         return HttpResponseRedirect('/')
