@@ -34,6 +34,8 @@ urlpatterns = [
     url(r'^applogin/',tickapp_views.applogin),
     url(r'^result/',tickapp_views.result),
     url(r'^overview/(?P<id>.*)',tickapp_views.overview),
+    url(r'^get_tickets/(?P<id>.*)',tickapp_views.download_event_tickets),
+    url(r'^get_ids/(?P<n>.*)',tickapp_views.get_event_ids),
     url(r'^get_qrcode/(?P<text>.*)',tickapp_views.render_qrcode),#security vurnelability here this can act as truthness function[explanation later]
 
 

@@ -596,3 +596,30 @@ def api_create_user(request):
     except Exception as err:
         return JsonResponse({'id':0,'stat':str(err)})
 
+
+def download_event_tickets(request,id):
+    #add authentication
+    if 'timestamp' in request.GET.keys():
+        pass #TODO: process the time stamp
+    else:
+        timestamp=0
+
+    #TODO: IMPLEMENT A BETTER ONE WITHOUT LOOPS
+    raw={}
+    c=0
+    raw['timestamp']=datetime.datetime.now()
+    raw['event']=Show.objects.get(id=id).title
+    tmp={}
+    tickets=ticket.objects.filter(event_id=id)
+    for tcket in tickets:
+        tmp[tcket.pin]={'name':tcket.Name,'scanned':tcket.status,
+        'date':tcket.date}
+    raw['tickets']=tmp
+    return JsonResponse(raw)
+
+def get_event_ids(request,n=10):
+    events=Show.objects.all()
+    result={}
+    for event in events[:n]:
+        result[event.title]=event.id
+    return JsonResponse(result)
