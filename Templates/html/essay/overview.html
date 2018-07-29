@@ -3,7 +3,7 @@
 {% load static %}
 {% block content %}
 <main style="background-color: #fff;height: 500px;">
-   <table>
+   <table style='margin:20px; padding:20px;'>
    	<tr>
    		<th>Username</th>
    		<th>Ticket Type</th>
@@ -18,6 +18,14 @@
    		{% endfor %}
    	</tr>
    	{% endfor %}
+        <tr>
+                <tf>All</tf>
+                <tf>All</tf>
+                <tf>N/A</tf>
+        {% for tot in total%}
+              <tf>tot</tf>
+        {% endfor %}
+        </tr>
    </table>
 </main>
 <style>

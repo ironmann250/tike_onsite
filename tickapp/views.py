@@ -465,11 +465,14 @@ def overview(request,id):
         tiktypes=tickettype.objects.filter(event=event)
         profiles=profile.objects.filter(event=event)
         data=[]
+        total=[0,0]
         for prfl in profiles:
             for tkt in tiktypes:
                 amount=ticket.objects.filter(event=event,ticket_type=tkt,seller=prfl).count()
                 data.append([prfl.seller.username,tkt.tike_type,tkt.amount,
                     amount,amount*tkt.amount])
+                total[0]+=amount
+                total[1]+=amount*tkt.amount
         return render(request,'html/essay/overview.html',locals())     
     except:
         return HttpResponseRedirect('/')
