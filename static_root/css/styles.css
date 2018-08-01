@@ -255,3 +255,9 @@ font-size: 20px;
     flex-flow: row;
     justify-content: center;
 }
+@media only screen and (min-width: 768px){
+    .bgonly{
+        visibility: hidden;
+        display: none;
+    }
+}
