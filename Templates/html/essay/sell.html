@@ -46,14 +46,12 @@ function checkfield(theForm) {
                       </select>
                       </label>
            <div class="center">
-          <span style="margin-right: 10px"><input type="radio" name="usage" value="0" id="emailonly" >Email </span> <span style="margin-right: 10px"><input type="radio" name="usage" value="1" checked id="telonly"> Tel</span>
-          <span style="margin-right: 10px">
           <input name="autocheck" type="checkbox">Auto Check
         </span>
                       </div> 
-					<input type="tel" name="tel" placeholder="Tel number" value="+250"  id="tel">
+					<input type="tel" name="tel" placeholder="Tel number" value="+250"  id="tel" autocomplete="off">
                       <br>
-					<input type="tel" name="pass" placeholder="Repeat Tel number" value="+250" id="repeater">
+		<input type="tel" name="pass" placeholder="Repeat Tel number" value="+250" id="repeater" autocomplete="off">
           <p id="notice"><span class="glyphicon glyphicon-alert font" aria-hidden="true"></span><span class="font"> Match the field</span></p>
 
 					<input type="submit" name="login" class="login loginmodal-submit" value="Generate Ticket" id="submit">

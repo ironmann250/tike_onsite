@@ -6,7 +6,7 @@ from tickapp.models import profile,ticket,tickettype,Show
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.core.mail import send_mail
-from django.http import HttpResponse,JsonResponse
+from django.http import  HttpResponse,JsonResponse, HttpResponseRedirect
 from StringIO import StringIO
 from tickapp.utils import qrcodeGenerator
 # Create a pin code
@@ -91,6 +91,9 @@ def sell(request):
     if request.method == 'POST':
         event= request.POST['event']
         ticket_type = request.POST['ticket_type']
+        name= request.POST['name']
+        if name=='':name='undef'
+        email=request.POST['email']
         tel= request.POST['tel']
         tel_double_check=request.POST['pass']
         autocheck='off'
@@ -461,11 +464,15 @@ def overview(request,id):
         tiktypes=tickettype.objects.filter(event=event)
         profiles=profile.objects.filter(event=event)
         data=[]
+        total=[0,0]
         for prfl in profiles:
             for tkt in tiktypes:
                 amount=ticket.objects.filter(event=event,ticket_type=tkt,seller=prfl).count()
                 data.append([prfl.seller.username,tkt.tike_type,tkt.amount,
                     amount,amount*tkt.amount])
+                total[0]+=amount
+                total[1]+=amount*tkt.amount
+        print total
         return render(request,'html/essay/overview.html',locals())     
     except:
         return HttpResponseRedirect('/')
@@ -592,3 +599,30 @@ def api_create_user(request):
     except Exception as err:
         return JsonResponse({'id':0,'stat':str(err)})
 
+
+def download_event_tickets(request,id):
+    #add authentication
+    if 'timestamp' in request.GET.keys():
+        pass #TODO: process the time stamp
+    else:
+        timestamp=0
+
+    #TODO: IMPLEMENT A BETTER ONE WITHOUT LOOPS
+    raw={}
+    c=0
+    raw['timestamp']=datetime.datetime.now()
+    raw['event']=Show.objects.get(id=id).title
+    tmp={}
+    tickets=ticket.objects.filter(event_id=id)
+    for tcket in tickets:
+        tmp[tcket.pin]={'name':tcket.Name,'scanned':tcket.status,
+        'date':tcket.date}
+    raw['tickets']=tmp
+    return JsonResponse(raw)
+
+def get_event_ids(request,n=10):
+    events=Show.objects.all()
+    result={}
+    for event in events[:n]:
+        result[event.title]=event.id
+    return JsonResponse(result)
