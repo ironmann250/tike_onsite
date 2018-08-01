@@ -68,7 +68,6 @@ web_url='http://tikeweb.herokuapp.com/'  #fetch from settings
 def sell(request):
     if request.user.is_authenticated():
         username = request.user.username
-
         objs = profile.objects.get(seller__username=username)
         event = objs.event
         view=event.id
