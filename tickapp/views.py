@@ -91,7 +91,7 @@ def sell(request):
     if request.method == 'POST':
         event= request.POST['event']
         ticket_type = request.POST['ticket_type']
-        name= request.POST['name']
+        name=''# request.POST['name']
         if name=='':name='undef'
         email=request.POST['email']
         tel= request.POST['tel']
