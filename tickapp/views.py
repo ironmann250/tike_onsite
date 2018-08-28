@@ -93,13 +93,13 @@ def sell(request):
         ticket_type = request.POST['ticket_type']
         name=''# request.POST['name']
         if name=='':name='undef'
-        email=request.POST['email']
+        #email=request.POST['email']
         tel= request.POST['tel']
         tel_double_check=request.POST['pass']
         autocheck='off'
         if 'autocheck' in request.POST.keys(): autocheck=request.POST['autocheck']
         print autocheck
-        usage = request.POST['usage']
+        usage = '1'#request.POST['usage']
         pin = id_generator()
         eventobj= Show.objects.get(title = event)
         sellerobj= profile.objects.get(seller__username = username)
