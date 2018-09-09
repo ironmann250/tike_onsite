@@ -139,9 +139,9 @@ def sell(request):
                 sold = sold + 1
                 perc = (sold/total)* 100  
                 if autocheck=='on':
-                    newticket=ticket.objects.create(phone_number = tel, email= email, Name= name, pin = pin, event = eventobj, seller= sellerobj,ticket_type= tobj,status=True)
+                    newticket=ticket.objects.create(phone_number = tel, email= '', Name= name, pin = pin, event = eventobj, seller= sellerobj,ticket_type= tobj,status=True)
                 else:
-                    newticket= ticket.objects.create(phone_number = tel, email= email, Name= name, pin = pin, event = eventobj, seller= sellerobj,ticket_type= tobj)            
+                    newticket= ticket.objects.create(phone_number = tel, email= '', Name= name, pin = pin, event = eventobj, seller= sellerobj,ticket_type= tobj)            
                 newticket.save()
                 return render(request,'html/essay/sell.html',{'view' : 'Sell', 'event': event, 'action': False, 'ticket_types' : ticket_types, 'action': False,'username':username,'st':st,'income': 0,'ticketdict': ticketdict,'total': total,'sold': sold,'perc': perc,'tel': tel })
             except ApiError as e:
