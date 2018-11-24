@@ -2,14 +2,13 @@
 
 
 {% block content %}
-<form id="form"> 
+<form enctype="multipart/form-data" method='POST' id="form"> 
+	{% csrf_token %}
     <div class="input-group">
-      <input type='file' id="tel" name="user_tel" placeholder="Input an excel sheet" class="fom-control">
+      <input type='file' id="file" name="file" placeholder="Input an excel sheet(csv)" class="form-control">
     </div>
       <br>
-      <a onclick="createfield()" type="button" class="btn btn-primary"> 
-            Create Database
-        </a>
+      <input onclick="createfield()" type="submit" class="btn btn-primary" value='Create Database'> 
   </form>
   
 {% endblock %}
