@@ -3,27 +3,27 @@
 
 {% block content %}
 <form id="form"> 
-    <div id="name">
-      <label for="name">Name</label>
+    <div id="name" class="input-group">
+      <span class="input-group-addon" id="basic-addon1">Name</span>
       <input type="text" id="name" name="user_name">
     </div>
     <br>
     
-    <div id="email">
-      <label for="mail">E-mail</label>
-      <input type="email" id="mail" name="user_mail">
+    <div id="email" class="input-group">
+      <span class="input-group-addon" id="basic-addon1">Email</span>
+      <input type="email" id="mail" name="user_mail" class="fom-control">
     </div>
       <br>
   
-    <div>
-      <label for="msg">Company:</label>
-      <input type='tel' id="tel" name="user_tel">
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">Company</span>
+      <input type='tel' id="tel" name="user_tel" class="fom-control">
     </div>
       <br>
   
-    <div>
-      <label for="interest">Badge</label>
-      <textarea id="interest" name="user_interest"></textarea>
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">Badge</span>
+      <textarea id="interest" name="user_interest" class="fom-control"></textarea>
     </div>
       <br>
     
