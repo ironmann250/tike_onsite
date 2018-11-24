@@ -4,25 +4,25 @@
 {% block content %}
 <form id="form"> 
     <div id="name">
-      <label for="name">Name:</label>
+      <label for="name">Name</label>
       <input type="text" id="name" name="user_name">
     </div>
     <br>
     
     <div id="email">
-      <label for="mail">E-mail:</label>
+      <label for="mail">E-mail</label>
       <input type="email" id="mail" name="user_mail">
     </div>
       <br>
   
     <div>
-      <label for="msg">Telephone:</label>
+      <label for="msg">Company:</label>
       <input type='tel' id="tel" name="user_tel">
     </div>
       <br>
   
     <div>
-      <label for="interest">Interests and Hobbies:</label>
+      <label for="interest">Badge</label>
       <textarea id="interest" name="user_interest"></textarea>
     </div>
       <br>
@@ -32,17 +32,7 @@
     <div>
   
   </form>
-  <button onclick="createfield()" type="button"> 
-      Add Form
+  <button onclick="createfield()" type="button" class="btn btn-dark"> 
+      Create Database
       </button>
-      <script type="text/javascript">
-        function createfield() {
-          var form=document.getElementById("form");
-          var name_field=document.getElementById("name");
-          var cln = name_field.cloneNode(true); 
-          form.insertBefore(cln, name_field);
-          
-          
-      }
-      </script>
 {% endblock %}
