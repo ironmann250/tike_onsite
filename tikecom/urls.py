@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.contrib.auth import views as auth_views
 from tickapp import views as tickapp_views
+from business import views as business_views
 from django.conf.urls.static import static
 
 urlpatterns = [
@@ -33,6 +34,7 @@ urlpatterns = [
     url(r'^ticket/',tickapp_views.get_ticket),
     url(r'^applogin/',tickapp_views.applogin),
     url(r'^result/',tickapp_views.result),
+    url(r'^create_database/',business_views.create_db),
     url(r'^overview/(?P<id>.*)',tickapp_views.overview),
     url(r'^get_tickets/(?P<id>.*)',tickapp_views.download_event_tickets),
     url(r'^get_ids/(?P<n>.*)',tickapp_views.get_event_ids),
