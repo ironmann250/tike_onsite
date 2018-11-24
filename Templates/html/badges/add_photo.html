@@ -1,0 +1,38 @@
+{% extends 'html/badges/base.html' %}
+
+
+{% block content %}
+<form id="form"> 
+    <div id="name" class="input-group">
+      <span class="input-group-addon" id="basic-addon1">Name</span>
+      <input type="text" id="name" name="user_name">
+    </div>
+    <br>
+    
+    <div id="email" class="input-group">
+      <span class="input-group-addon" id="basic-addon1">Email</span>
+      <input type="email" id="mail" name="user_mail" class="fom-control">
+    </div>
+      <br>
+  
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">Company</span>
+      <input type='tel' id="tel" name="user_tel" class="fom-control">
+    </div>
+      <br>
+  
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">Badge</span>
+      <textarea id="interest" name="user_interest" class="fom-control"></textarea>
+    </div>
+      <br>
+    
+    
+    <br>
+    <div>
+  
+  </form>
+  <a onclick="createfield()" type="button" class="btn btn-primary"> 
+      Add Photo
+  </a>
+{% endblock %}

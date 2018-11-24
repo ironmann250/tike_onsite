@@ -3,12 +3,14 @@
 
 {% block content %}
 <form id="form"> 
-    <div class="input-group">
-      <input type='file' id="tel" name="user_tel" placeholder="Input an excel sheet" class="fom-control">
+    <div id="name" class="input-group">
+      <span class="input-group-addon" id="basic-addon1">Name</span>
+      <input type="text" id="name" name="user_name">
     </div>
-      <br>
+    <br>
+  
   </form>
   <a onclick="createfield()" type="button" class="btn btn-primary"> 
-      Create Database
+      Search
   </a>
 {% endblock %}
