@@ -54,7 +54,7 @@ def add_logo(qr,logo,perc=5):
 
 	lg_width,lg_height=logo.size
 	center=((qr_width/2)-lg_width/2,(qr_height/2)-lg_height/2)
-	logo=ImageOps.expand(logo,border=1,fill='orange')
+ 	logo=ImageOps.expand(logo,border=1,fill='orange')
 	master_img.paste(logo,center)
 	return master_img
 
