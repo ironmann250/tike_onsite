@@ -4,7 +4,9 @@ from django.db.models import Q
 from tickapp.utils import libbadge
 from StringIO import StringIO
 from django.http import  HttpResponse, HttpResponseRedirect
+from django.http import  HttpResponse,JsonResponse, HttpResponseRedirect
 import csv
+impor
 
 def save_to_string(img):
     obj=StringIO()
