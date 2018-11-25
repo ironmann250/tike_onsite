@@ -46,7 +46,7 @@ def generate(request,id):
 	'name':badge.First_name+' '+badge.Last_namee,
 	'title':badge.company 
 	}
-	badge_img=save_to_string(libbadge.make_badge(user_vals))
+	badge_img=save_to_string(libbadge.make_badge(libbadge.user_vals))
 	response= HttpResponse(badge_img,content_type='image/jpeg')
 	return response
 
