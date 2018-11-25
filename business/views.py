@@ -41,12 +41,12 @@ def search(request):
 def generate(request,id):
 	badge=badges.objects.get(id=id)
 	#libbadge.init()
-	libbadge.user_vals={
+	user_vals={
 	'pin':'#TIKE'+str(badge.id),
 	'name':badge.First_name+' '+badge.Last_namee,
 	'title':badge.company 
 	}
-	badge_img=save_to_string(libbadge.make_badge())
+	badge_img=save_to_string(libbadge.make_badge(user_vals))
 	response= HttpResponse(badge_img,content_type='image/jpeg')
 	return response
 
