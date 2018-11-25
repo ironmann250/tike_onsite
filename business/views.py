@@ -67,7 +67,7 @@ def check(request, id):
 		pass
 	else:
 		try: 
-			badge=badges.objects.get(Q(id__exact='n'))
+			badge=badges.objects.get(Q(id__exact=12))
 		except badges.DoesNotExist:
 			result={'first_name': 'munyakabera', 'last_name': 'claude', 'company':'tike'}
 			return JsonResponse(result)
