@@ -62,7 +62,7 @@ def edit(request,id):
 
 
 
-def check(request, id):
+def check(request):
 	if 'q' in request.GET.keys():
 		q=request.GET['q']
 		badge=badges.objects.get(Q(id__exact=q))
