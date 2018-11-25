@@ -85,7 +85,7 @@ def generate(request,id):
 #compute size from text? later now no more than 30 chars(further work more coffee)
 	
 	user_vals={
-	'pin':badge.id,
+	'pin':str(badge.id),
 	'name':badge.First_name+' '+badge.Last_namee,
 	'title':badge.company 
 	}
