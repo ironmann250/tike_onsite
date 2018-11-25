@@ -26,7 +26,7 @@ qrcode=qrcodeGenerator.init(user_vals['pin'])#or use make_qrcode
 
 #vals to write on image
 
-def make_badge(user_vals, bias=10):
+def make_badge(libbadge.user_vals, bias=10):
 	global canvas,font,qrcode,user_vals
 	global text_pos,pin_pos,qrcode_pos
 	#resize qrcode to 100 by 100 px and add it to main image
