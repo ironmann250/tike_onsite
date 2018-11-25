@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from business.models import *
 from django.db.models import Q
-from tickapp.utils import libbadge
+#from tickapp.utils import libbadge
 from StringIO import StringIO
 from django.http import  HttpResponse, HttpResponseRedirect
 from django.http import  HttpResponse,JsonResponse, HttpResponseRedirect
@@ -37,16 +37,63 @@ def search(request):
 		badges_=badges.objects.filter(Q(First_name__contains=q)|Q(Last_namee__contains=q)|Q(company__contains=q))
 		print len(badges_)
 	return render(request,'html/badges/search.html',locals())
+#from  tickapp.utils 
+import qrcodeGenerator
+from PIL import Image,ImageFont,ImageDraw,ImageOps
+
+#why not make this into a class for a change :) (lot's of coffee lol)
+#nahh speedy, no time to structure
+
+#init vals, make it as dict to use it directly in a loop
+
+user_vals={}
+#core vals
+#messed the filesys with fonts...
+#compute size from text? later now no more than 30 chars(further work more coffee)
+size=(480,240)#width,height
+text_pos=[37,27]#array cause it changes at somepoint
+qrcode_pos=(330,95)
+pin_pos=(287,208)
+font_name,font_size=['Helvetica-Normal.ttf',30]
+color='white' #maybe light gray? front always black
+
+
+#init vals
+canvas=Image.new("RGB",size,color)
+font = ImageFont.truetype(font_name, font_size)
+qrcode=qrcodeGenerator.init(user_vals['pin'])#or use make_qrcode 
+
+#vals to write on image
+
+def make_badge(user_vals, bias=10):
+	global canvas,font,qrcode,user_vals
+	global text_pos,pin_pos,qrcode_pos
+	#resize qrcode to 100 by 100 px and add it to main image
+	qrcode.thumbnail((100,100),Image.ANTIALIAS)#if buggy use consise_rect algo
+	canvas.paste(qrcode,qrcode_pos)
+	# text stuffs now
+	drawHandler = ImageDraw.Draw(canvas)
+	#write line get dimensions to compute newline
+	#name
+	drawHandler.text(text_pos, user_vals['name'], (0,0,0), font=font)
+	textlen=font.getsize(user_vals['name'])
+	text_pos[1]=text_pos[1]+textlen[1]+bias#adjust the bias as needed
+	#title
+	drawHandler.text(text_pos, user_vals['title'], (0,0,0), font=font)
+	#code
+	drawHandler.text(pin_pos, user_vals['pin'], (0,0,0), font=font)
+	#show
+	return canvas
 
 def generate(request,id):
 	badge=badges.objects.get(id=id)
 	#libbadge.init()
-	libbadge.user_vals={
+	user_vals={
 	'pin':'#TIKE'+str(badge.id),
 	'name':badge.First_name+' '+badge.Last_namee,
 	'title':badge.company 
 	}
-	badge_img=save_to_string(libbadge.make_badge(libbadge.user_vals))
+	badge_img=save_to_string(make_badge(user_vals))
 	response= HttpResponse(badge_img,content_type='image/jpeg')
 	return response
 
