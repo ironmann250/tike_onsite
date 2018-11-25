@@ -39,6 +39,7 @@ def search(request):
 
 def generate(request,id):
 	badge=badges.objects.get(id=id)
+	libbadge.init()
 	libbadge.user_vals={
 	'pin':'#TIKE'+str(badge.id),
 	'name':badge.First_name+' '+badge.Last_namee,
