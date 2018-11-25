@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from business.models import *
 from django.db.models import Q
+from tickapp.utils import qrcodeGenerator
 #from tickapp.utils import libbadge
 from StringIO import StringIO
 from django.http import  HttpResponse, HttpResponseRedirect
