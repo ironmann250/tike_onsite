@@ -82,18 +82,17 @@ def generate(request,id):
 	font_name,font_size=['Helvetica-Normal.ttf',30]
 	color='white' #maybe light gray? front always black
 
-
+	user_vals={
+	'pin':'#TIKE'+str(badge.id),
+	'name':badge.First_name+' '+badge.Last_namee,
+	'title':badge.company 
+	}
 #init vals
 	canvas=Image.new("RGB",size,color)
 	font = ImageFont.truetype(font_name, font_size)
 	qrcode=qrcodeGenerator.init(user_vals['pin'])#or use make_qrcode 
 
 #vals to write on image
-	user_vals={
-	'pin':'#TIKE'+str(badge.id),
-	'name':badge.First_name+' '+badge.Last_namee,
-	'title':badge.company 
-	}
 	badge_img=save_to_string(make_badge(user_vals))
 	response= HttpResponse(badge_img,content_type='image/jpeg')
 	return response
