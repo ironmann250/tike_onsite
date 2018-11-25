@@ -41,9 +41,7 @@ def generate(request,id):
 	badge=badges.objects.get(id=id)
 	libbadge.init()
 	libbadge.user_vals={
-	'pin':'#TIKE'+str(badge.id),
-	'name':badge.First_name+' '+badge.Last_namee,
-	'title':badge.company 
+	'pin':'#TIKE'+str(badge.id) 
 	}
 	badge_img=save_to_string(libbadge.make_badge())
 	response= HttpResponse(badge_img,content_type='image/jpeg')
@@ -57,3 +55,28 @@ def edit(request,id):
 		badge.Picture=file_
 		badge.save()
 	return render(request,'html/badges/add_photo.html',locals())
+
+def check(request):
+	if 'q' in request.GET.keys():
+		try: 
+			badge=badges.objects.get(Q(id__exact=q))
+		except badges.DoesNotExist:
+			result={}
+			return JsonResponse(result)
+
+		first_name=badge.first_name
+		last_name=badge.last_name
+		company=badge.company
+		result= {'first_name':first_name,'last_name': last_name,'company':company}
+		return JsonResponse(result)
+
+
+
+	
+
+
+
+	
+
+
+		
