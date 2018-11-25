@@ -7,7 +7,7 @@ from PIL import Image,ImageFont,ImageDraw,ImageOps
 
 #init vals, make it as dict to use it directly in a loop
 
-user_vals={
+global user_vals={
 }
 #core vals
 #messed the filesys with fonts...
