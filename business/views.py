@@ -16,7 +16,7 @@ def create_db(request):
 	if request.method == "POST":
 		# get the uploaded file
 		_file = request.FILES['file']
-		print 'post',type(_file)
+		print ('post',type(_file))
 		# do something with the file
 		#add error hadling later
 		reader = csv.reader(_file,delimiter=',')
