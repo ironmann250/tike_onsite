@@ -64,6 +64,8 @@ def edit(request,id):
 
 def check(request, id):
 	if 'q' in request.GET.keys():
+		pass
+	else:
 		try: 
 			badge=badges.objects.get(Q(id__exact=q))
 		except badges.DoesNotExist:
