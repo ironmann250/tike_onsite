@@ -49,8 +49,8 @@ from PIL import Image,ImageFont,ImageDraw,ImageOps
 
 
 
-def make_badge(user_vals, bias=10):
-	global canvas,font,qrcode
+def make_badge(user_vals,qrcode, bias=10):
+	global canvas,font
 	global text_pos,pin_pos,qrcode_pos
 	#resize qrcode to 100 by 100 px and add it to main image
 	qrcode.thumbnail((100,100),Image.ANTIALIAS)#if buggy use consise_rect algo
@@ -94,7 +94,7 @@ def generate(request,id):
 	qrcode=qrcodeGenerator.init(user_vals['pin'])#or use make_qrcode 
 
 #vals to write on image
-	badge_img=save_to_string(make_badge(user_vals))
+	badge_img=save_to_string(make_badge(user_vals, qrcode))
 	response= HttpResponse(badge_img,content_type='image/jpeg')
 	return response
 
