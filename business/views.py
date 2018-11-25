@@ -39,7 +39,7 @@ def search(request):
 
 def generate(request,id):
 	badge=badges.objects.get(id=id)
-	libbadge.init()
+	#libbadge.init()
 	libbadge.user_vals={
 	'pin':'#TIKE'+str(badge.id),
 	'name':badge.First_name+' '+badge.Last_namee,
@@ -69,8 +69,8 @@ def check(request):
 			result={}
 			return JsonResponse(result)
 
-		first_name=badge.first_name
-		last_name=badge.last_name
+		first_name=badge.First_name
+		last_name=badge.Last_namee
 		company=badge.company
 		result= {'first_name':first_name,'last_name': last_name,'company':company}
 		return JsonResponse(result)
