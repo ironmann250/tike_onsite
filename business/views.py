@@ -38,7 +38,7 @@ def search(request):
 		print len(badges_)
 	return render(request,'html/badges/search.html',locals())
 #from  tickapp.utils 
-import qrcodeGenerator
+from tickapp.utils import qrcodeGenerator
 from PIL import Image,ImageFont,ImageDraw,ImageOps
 
 #why not make this into a class for a change :) (lot's of coffee lol)
