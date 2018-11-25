@@ -1,7 +1,7 @@
 #from  tickapp.utils 
 
 from tickapp.utils import qrcodeGenerator
-
+import qrcodeGenerator
 from PIL import Image,ImageFont,ImageDraw,ImageOps
 
 #why not make this into a class for a change :) (lot's of coffee lol)
@@ -28,7 +28,7 @@ color='white' #maybe light gray? front always black
 #init vals
 canvas=Image.new("RGB",size,color)
 font = ImageFont.truetype(font_name, font_size)
-qrcode=qrcodeGenerator.init('user_vals['pin']')#or use make_qrcode 
+qrcode=qrcodeGenerator.init(user_vals['name']+'|'+user_vals['pin'])#or use make_qrcode 
 
 #vals to write on image
 
