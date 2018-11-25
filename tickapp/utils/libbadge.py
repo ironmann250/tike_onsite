@@ -48,7 +48,5 @@ def make_badge(bias=10):
 	#code
 	drawHandler.text(pin_pos, user_vals['pin'], (0,0,0), font=font)
 	#show
-	canvas.save('test.jpg')
+	return canvas
 
-
-make_badge()

@@ -2,10 +2,17 @@
 
 
 {% block content %}
-<form id="form"> 
+<form enctype="multipart/form-data" method='POST' id="form"> 
+  {% csrf_token %}
+   
     <div id="name" class="input-group">
-      <span class="input-group-addon" id="basic-addon1">Name</span>
-      <input type="text" id="name" name="user_name">
+      <span class="input-group-addon" id="basic-addon1">First Name</span>
+      <input type="text" value={{badge.First_name}} id="name" name="first_name">
+    </div>
+    <br>
+    <div id="name" class="input-group">
+      <span class="input-group-addon" id="basic-addon1">Last Name</span>
+      <input type="text" value={{badge.Last_namee}} id="name" name="Last_name">
     </div>
     <br>
     
@@ -17,22 +24,22 @@
   
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">Company</span>
-      <input type='tel' id="tel" name="user_tel" class="fom-control">
+      <input type='text' value='{{badge.company}}' id="tel" name="company" class="fom-control">
     </div>
       <br>
   
-    <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1">Badge</span>
-      <textarea id="interest" name="user_interest" class="fom-control"></textarea>
+     <div class="input-group">
+      <input type='file' id="file" name="image" placeholder="Input user profile image" class="form-control">
     </div>
       <br>
     
     
     <br>
     <div>
-            <a onclick="createfield()" type="button" class="btn btn-primary"> 
-                    Generate QR Code
-                </a>
+            <input onclick="createfield()" type="submit" class="btn btn-primary" value="Edit" style='float: left;'> 
+            <a href='/generate_badge/{{id}}' style='float: right;'>Generate QR Code</a>
+                    
+              
   </form>
  
 {% endblock %}

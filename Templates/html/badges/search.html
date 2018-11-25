@@ -5,12 +5,16 @@
 <form id="form"> 
     <div id="name" class="input-group">
       <span class="input-group-addon" id="basic-addon1">Name</span>
-      <input type="text" id="name" name="user_name">
+      <input type="text" id="name" name="q">
     </div>
     <br>
-    <a onclick="createfield()" type="button" class="btn btn-primary"> 
-            Search
-        </a>
+    <input onclick="createfield()" type="submit" class="btn btn-primary" value='Search'> 
+            
   </form>
- 
+ <!-- when search u get badge modify it or get printable badge from it -->
+ {% for badge in badges_ %}
+ <p>
+ 	<a href="/edit_badge/{{badge.id}}">edit {{badge.First_name}} {{badge.Last_namee}}'s badge</a>
+ </p>
+ {% endfor %}
 {% endblock %}
