@@ -3,18 +3,18 @@
 
 {% block content %}
 <form id="form"> 
+  <h3>Search</h3>
     <div id="name" class="input-group">
       <span class="input-group-addon" id="basic-addon1">Name</span>
       <input type="text" id="name" name="q">
     </div>
     <br>
-    <input onclick="createfield()" type="submit" class="btn btn-primary" value='Search'> 
-            
+    <input type="submit" class="btn btn-primary" value='Search'> 
+    {% for badge in badges_ %}
+    <p>
+      <a href="/edit_badge/{{badge.id}}" class="btn btn-link">edit {{badge.First_name}} {{badge.Last_namee}}'s badge</a>
+    </p>
+    {% endfor %}
+   {% endblock %}       
   </form>
  <!-- when search u get badge modify it or get printable badge from it -->
- {% for badge in badges_ %}
- <p>
- 	<a href="/edit_badge/{{badge.id}}">edit {{badge.First_name}} {{badge.Last_namee}}'s badge</a>
- </p>
- {% endfor %}
-{% endblock %}

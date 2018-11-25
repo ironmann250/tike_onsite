@@ -2,9 +2,14 @@
 
 
 {% block content %}
+
 <form enctype="multipart/form-data" method='POST' id="form"> 
   {% csrf_token %}
-   
+  <br>
+  <br>
+  <h3>Generate QR CODE</h3>
+  <br>
+  <br>
     <div id="name" class="input-group">
       <span class="input-group-addon" id="basic-addon1">First Name</span>
       <input type="text" value={{badge.First_name}} id="name" name="first_name">
@@ -36,9 +41,10 @@
     
     <br>
     <div>
-            <input onclick="createfield()" type="submit" class="btn btn-primary" value="Edit" style='float: left;'> 
-            <a href='/generate_badge/{{id}}' style='float: right;'>Generate QR Code</a>
-                    
+            <span><input  type="submit" class="btn btn-primary" value="Edit" style='float: left;'></span> 
+            <span><a href='/generate_badge/{{id}}' style='float: right;' class="btn btn-primary">Generate QR Code</a></span>
+            
+     </div>               
               
   </form>
  
