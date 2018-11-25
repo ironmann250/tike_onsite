@@ -46,24 +46,7 @@ from PIL import Image,ImageFont,ImageDraw,ImageOps
 
 #init vals, make it as dict to use it directly in a loop
 
-user_vals={}
-#core vals
-#messed the filesys with fonts...
-#compute size from text? later now no more than 30 chars(further work more coffee)
-size=(480,240)#width,height
-text_pos=[37,27]#array cause it changes at somepoint
-qrcode_pos=(330,95)
-pin_pos=(287,208)
-font_name,font_size=['Helvetica-Normal.ttf',30]
-color='white' #maybe light gray? front always black
 
-
-#init vals
-canvas=Image.new("RGB",size,color)
-font = ImageFont.truetype(font_name, font_size)
-qrcode=qrcodeGenerator.init(user_vals['pin'])#or use make_qrcode 
-
-#vals to write on image
 
 def make_badge(user_vals, bias=10):
 	global canvas,font,qrcode
@@ -88,6 +71,24 @@ def make_badge(user_vals, bias=10):
 def generate(request,id):
 	badge=badges.objects.get(id=id)
 	#libbadge.init()
+	user_vals={}
+#core vals
+#messed the filesys with fonts...
+#compute size from text? later now no more than 30 chars(further work more coffee)
+	size=(480,240)#width,height
+	text_pos=[37,27]#array cause it changes at somepoint
+	qrcode_pos=(330,95)
+	pin_pos=(287,208)
+	font_name,font_size=['Helvetica-Normal.ttf',30]
+	color='white' #maybe light gray? front always black
+
+
+#init vals
+	canvas=Image.new("RGB",size,color)
+	font = ImageFont.truetype(font_name, font_size)
+	qrcode=qrcodeGenerator.init(user_vals['pin'])#or use make_qrcode 
+
+#vals to write on image
 	user_vals={
 	'pin':'#TIKE'+str(badge.id),
 	'name':badge.First_name+' '+badge.Last_namee,
