@@ -1,6 +1,4 @@
 #from  tickapp.utils 
-
-from tickapp.utils import qrcodeGenerator
 import qrcodeGenerator
 from PIL import Image,ImageFont,ImageDraw,ImageOps
 
