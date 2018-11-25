@@ -56,6 +56,8 @@ def make_badge(user_vals,qrcode, bias=10):
 	pin_pos=(287,208)
 	font_name,font_size=['Helvetica-Normal.ttf',30]
 	color='white' #maybe light gray? front always black
+	canvas=Image.new("RGB",size,color)
+	font = ImageFont.truetype(font_name, font_size)
 
 	#resize qrcode to 100 by 100 px and add it to main image
 	qrcode.thumbnail((100,100),Image.ANTIALIAS)#if buggy use consise_rect algo
@@ -88,8 +90,7 @@ def generate(request,id):
 	'title':badge.company 
 	}
 #init vals
-	canvas=Image.new("RGB",size,color)
-	font = ImageFont.truetype(font_name, font_size)
+	
 	qrcode=qrcodeGenerator.init(user_vals['pin'])#or use make_qrcode 
 
 #vals to write on image
