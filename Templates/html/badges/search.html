@@ -4,10 +4,14 @@
 {% block content %}
 <form id="form"> 
   <h3>Search</h3>
-    <div id="name" class="input-group">
-      <span class="input-group-addon" id="basic-addon1">Name</span>
-      <input type="text" id="name" name="q">
-    </div>
+    <div id="name" class="form-group">
+        <div class="col-sm-4">
+        <label>Name</label>
+      </div>
+        <div class="col-sm-8">
+        <input type="text" id="name" name="q">
+      </div>
+      </div>
     <br>
     <input type="submit" class="btn btn-primary" value='Search'> 
     {% for badge in badges_ %}
