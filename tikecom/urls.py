@@ -36,6 +36,7 @@ urlpatterns = [
     url(r'^result/',tickapp_views.result),
     url(r'^create_database/',business_views.create_db),
     url(r'^search_database/',business_views.search),
+    url(r'^check_badge/(?P<id>.*)',business_views.check),
     url(r'^edit_badge/(?P<id>.*)',business_views.edit),
     url(r'^generate_badge/(?P<id>.*)',business_views.generate),
     url(r'^overview/(?P<id>.*)',tickapp_views.overview),
