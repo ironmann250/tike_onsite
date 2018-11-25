@@ -11,33 +11,29 @@
   <br>
   <br>
     <div id="name" class="form-group">
-      <label class="input-group-addon" id="basic-addon1">First Name</label>
+      <label>First Name</label>
       <input type="text" value={{badge.First_name}} id="name" name="first_name">
     </div>
-    <br>
+   
     <div id="name" class="form-group">
-      <label id="basic-addon1">Last Name</label>
+      <label>Last Name</label>
       <input type="text" value={{badge.Last_namee}} id="name" name="Last_name">
     </div>
-    <br>
     
     <div id="email" class="form-group">
-      <label id="basic-addon1">Email</label>&nbsp;
+      <label >Email</label>&nbsp;
       <input type="email" id="mail" name="user_mail" class="fom-control">
     </div>
-      <br>
   
     <div class="form-group">
       <label>Company</label>&nbsp;
       <input type='text' value='{{badge.company}}' id="tel" name="company" class="fom-control">
     </div>
-      <br>
   
      <div class="form-group">
       <input type='file' id="file" name="image" placeholder="Input user profile image" class="form-control">
     </div>
       <br>
-    <br>
     <div>
             <span><input  type="submit" class="btn btn-primary" value="Edit" style='float: left;'></span> 
             <span><a href='/generate_badge/{{id}}' style='float: right;' class="btn btn-primary">Generate QR Code</a></span>
