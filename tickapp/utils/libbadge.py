@@ -6,6 +6,9 @@ from PIL import Image,ImageFont,ImageDraw,ImageOps
 #nahh speedy, no time to structure
 
 #init vals, make it as dict to use it directly in a loop
+
+user_vals={
+}
 #core vals
 #messed the filesys with fonts...
 #compute size from text? later now no more than 30 chars(further work more coffee)
