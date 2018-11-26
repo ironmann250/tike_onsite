@@ -1,4 +1,4 @@
-{% load static %}
+﻿{% load static %}
 {% load staticfiles %}
 <!DOCTYPE html>
 <html>
@@ -12,9 +12,11 @@
 <link rel="stylesheet" type="text/css" href="{% static '/static/css/font-awesome/css/font-awesome.css'%}">
 <link rel="stylesheet" type="text/css" href="{% static '/static/css/atastyles.css' %} "><!--importing the ata stylesheet -->
 <link rel="stylesheet" type="text/css" href="{% static '/static/css/styles.css' %}">
+
 </head>
 <body>
 <div class="content-block">
+<div class="bg-only">
 <nav class="navbar navbar-inverse navbar-static-top">
   <div class="container">
   <p class="navbar-text navbar-centre">Happy Living . Enjoy Life <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span></p>
@@ -29,7 +31,17 @@
       </div>
     </div>
 </nav>
-<nav class="navbar navbar-default navbar-static-top">
+</div>
+<nav class="navbar navbar-default">
+        <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+              </div>
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
   <div class="container">
    <div class="secondnav">
       <ul class="nav navbar-nav" >
@@ -39,9 +51,11 @@
           <li class=""><a href="/restore"><span><span class="glyphicon glyphicon-cloud-download font" aria-hidden="true"></span></span><span><p>RESTORE</p></span></a></li>
        <li class=""><a href="/check"><span><span class="glyphicon glyphicon-ok font" aria-hidden="true"></span></span><span>CHECK</span></a></li>
        <li class=""><a href="/tools"><span><span class="glyphicon glyphicon-tasks font" aria-hidden="true"></span></span><span>TOOLS</span></a></li>
-
+       <li class=""><a href="/overview/{{event.id}}"><span><span><i class="fa fa-line-chart font" aria-hidden="true"></i></span></span><span>OVERVIEW</span></a></li>
+       <li class="visible-xs-block"><a href="/logout"><span><span class="glyphicon glyphicon-tasks font" aria-hidden="true"></span></span><span>Sign Out</span></a></li>
        </ul>
       </div>
+    </div>
     </div>
 </nav>
 <!--  <div class="container1">-->
@@ -55,6 +69,7 @@
 <!--        <span>CHECK</span></a></div>-->
 {% block content%}
 {% endblock %}
+</div>
 <footer>
 
     <div class="footer-end">
@@ -64,7 +79,7 @@
 
     </div>
     </footer>
-</div>
+
 <script type="text/javascript" src="{% static '/static/js/jquery-3.1.1.min.js'%}"></script>
 <script type="text/javascript" src="{% static '/static/js/bootstrap.min.js'%}"></script>
 <script type="text/javascript" src="{% static '/static/js/essay.js'%}"></script>

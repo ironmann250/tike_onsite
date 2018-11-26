@@ -1,0 +1,74 @@
+{% load static %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="description" content="News">
+<meta name="author" content="robo360">
+<title>Tike App .Registration</title>
+<link rel="icon" href="{% static '/static/img/LOGO11.png'%}" >
+<link rel="stylesheet" type="text/css" href="{% static '/static/css/bootstrap.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static '/static/css/font-awesome/css/font-awesome.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static '/static/css/atastyles.css' %} "><!--importing the ata stylesheet -->
+<link rel="stylesheet" type="text/css" href="{% static '/static/css/styles.css' %}">
+</head>
+<style>
+    form {
+    /* Just to center the form on the page */
+    margin: 0 auto;
+    width: 500px;
+    /* To see the outline of the form */
+    padding: 1em;
+    border: 1px solid #CCC;
+    border-radius: 1em;
+  }
+  
+  </style>
+<body>
+<div class="content-block">
+<div class="bg-only">
+<nav class="navbar navbar-inverse navbar-static-top">
+  <div class="container">
+  <p class="navbar-text navbar-centre">Registration Sys <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span></p>
+   <!--<div class="navbar-right">
+      <ul class="nav navbar-nav">
+       <li class=""><a href="#">Help</a></li>
+       <li class=""><a href="#">Contact Us</a></li>
+        <li class=""><a href="/logout">Sign Out</a></li>
+       </ul>
+
+      </div>
+      -->
+    </div>
+</nav>
+</div>
+<nav class="navbar navbar-default">
+        <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+            </div>
+        </nav>
+<!--  <div class="container1">-->
+<!--    <div class="element4"><a href="template.html"><span class="glyphicon glyphicon-facetime-video font" aria-hidden="true"></span>-->
+<!--        <span>SELL</span></a></div> -->
+<!--    <div class="element3"><a href="template.html"><span class="glyphicon glyphicon-star font" aria-hidden="true"></span>-->
+<!--        <span>RESTORE</span></a></div>-->
+<!--    <div class="element5"><a href="template.html"><span class="glyphicon glyphicon-blackboard font" aria-hidden="true"></span>-->
+<!--        <span>TRANSFER</span></a></div>-->
+<!--    <div class="element6"><a href="template.html"><span class="glyphicon glyphicon-flag font" aria-hidden="true"></span>-->
+<!--        <span>CHECK</span></a></div>-->
+{% block content%}
+{% endblock %}
+</div>
+
+
+<script type="text/javascript" src="{% static '/static/js/jquery-3.1.1.min.js'%}"></script>
+<script type="text/javascript" src="{% static '/static/js/bootstrap.min.js'%}"></script>
+<script type="text/javascript" src="{% static '/static/js/essay.js'%}"></script>
+</body>
+</html>

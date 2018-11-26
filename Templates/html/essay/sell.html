@@ -10,7 +10,7 @@
 
            <div class="loginmodal-container">
 					<br>
-            <div class="logo"><img src="{% static '/static/img/LOGO13.png' %}" style="height: 50%; width: 50%"></div>
+           
 <script>
 function checkfield(theForm) {
     if (theForm.tel.value != theForm.pass.value)
@@ -46,22 +46,20 @@ function checkfield(theForm) {
                       </select>
                       </label>
            <div class="center">
-          <span style="margin-right: 10px"><input type="radio" name="usage" value="0" id="emailonly" >Email </span> <span style="margin-right: 10px"><input type="radio" name="usage" value="1" checked id="telonly"> Tel</span>
-          <span style="margin-right: 10px">
           <input name="autocheck" type="checkbox">Auto Check
         </span>
                       </div> 
-          <input type="text" name="name" placeholder="Full Name" id="name">
 
-					<input type="tel" name="tel" placeholder="Tel number" value="+250"  id="tel">
+					<input type="tel" name="tel" placeholder="Tel number" value="+250"  id="tel" autocomplete="off">
                       <br>
-					<input type="tel" name="pass" placeholder="Repeat Tel number" value="+250" id="repeater">
+		<input type="tel" name="pass" placeholder="Repeat Tel number" value="+250" id="repeater" autocomplete="off">
           <p id="notice"><span class="glyphicon glyphicon-alert font" aria-hidden="true"></span><span class="font"> Match the field</span></p>
 
 					<input type="submit" name="login" class="login loginmodal-submit" value="Generate Ticket" id="submit">
 				  </form>
 				</div>
         </div>
+        
         <div class="col-md-6 col-sm-12 side2">
         <h2><i class="fa fa-line-chart" aria-hidden="true"></i> &nbsp;&nbsp;Report &amp; Status</h2>
 <div class="report col-sm-12">

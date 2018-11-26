@@ -6,7 +6,7 @@ from tickapp.models import profile,ticket,tickettype,Show
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.core.mail import send_mail
-from django.http import HttpResponse,JsonResponse
+from django.http import  HttpResponse,JsonResponse, HttpResponseRedirect
 from StringIO import StringIO
 from tickapp.utils import qrcodeGenerator
 # Create a pin code
@@ -48,9 +48,9 @@ api.set_password('869579e0598bd70a216261a80507efed')
 api.auth_token = 'q6QWErR7qkI9MNzA4bJJ86fltC5KfselYYiO2DUi'
     #sending SMS
 
-def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
+def id_generator(size=4, chars=string.ascii_uppercase + string.digits):
     """
-    generate a 6 character pi that is unique in db/ticket
+    generate a 4 character pin that is unique in db/ticket
     """
     pin=''.join(random.choice(chars) for _ in range(size))
     if ticket.objects.filter(pin=pin).count() !=0:
@@ -68,9 +68,9 @@ web_url='http://tikeweb.herokuapp.com/'  #fetch from settings
 def sell(request):
     if request.user.is_authenticated():
         username = request.user.username
-
         objs = profile.objects.get(seller__username=username)
         event = objs.event
+        view=event.id
         tickobjs=list()
         tickobjs = tickettype.objects.filter(event= event)
         ticket_types=list()
@@ -91,15 +91,15 @@ def sell(request):
     if request.method == 'POST':
         event= request.POST['event']
         ticket_type = request.POST['ticket_type']
-        name= request.POST['name']
+        name=''# request.POST['name']
         if name=='':name='undef'
-        email=request.POST['email']
+        #email=request.POST['email']
         tel= request.POST['tel']
         tel_double_check=request.POST['pass']
         autocheck='off'
         if 'autocheck' in request.POST.keys(): autocheck=request.POST['autocheck']
         print autocheck
-        usage = request.POST['usage']
+        usage = '1'#request.POST['usage']
         pin = id_generator()
         eventobj= Show.objects.get(title = event)
         sellerobj= profile.objects.get(seller__username = username)
@@ -111,11 +111,11 @@ def sell(request):
                 sold1 = sold +1
                 htmlmsg = render_to_string('html/essay/email.html',{'event':event,'names': name,'ticket_type':ticket_type,'fee': fee,'date':datetime,'pin':pin,'sold':sold1})
                 send_mail('Your ticket to attend the event','',me,email,html_message= htmlmsg, fail_silently= False)
-                newticket= ticket.objects.create()
                 if autocheck=='on':
-                    newticket= ticket(phone_number = tel, email= email, Name= name, pin = pin, event = eventobj, seller= sellerobj,ticket_type= tobj,status=True)
+                    newticket= ticket.objects.create(phone_number = tel, email= email, Name= name, pin = pin, event = eventobj, seller= sellerobj,ticket_type= tobj,status=True)
                 else:
-                    newticket= ticket(phone_number = tel, email= email, Name= name, pin = pin, event = eventobj, seller= sellerobj,ticket_type= tobj)            
+                    newticket= ticket.objects.create(phone_number = tel, email= email, Name= name, pin = pin, event = eventobj, seller= sellerobj,ticket_type= tobj)
+            
                 newticket.save()
             except smtplib.SMTPException:
                 return render(request,'html/essay/sell.html',{'view' : 'Sell','action': True, 'event': event, 'ticket_types' : ticket_types, 'action': True,'username':username,'st': st, 'income': 0,'ticketdict': ticketdict , 'total': total,'sold': sold,'perc': perc,'email':email,'pin':pin})
@@ -127,29 +127,28 @@ def sell(request):
         if usage == '1':
             try:
                 api.service('sms').action('send')
-                api.set_content('[%1%] ticket for the [%2%] for [%3%] on [%4%], code:[%5%]\nvisit [%6%]get_qrcode/[%7%]')
-                api.set_params(ticket_type,event,name,datetime.strftime("%d-%b at %H:%M"),pin,web_url,pin) 
+                api.set_content('[%1%] ticket for the [%2%] for [%3%] on [%4%], code: '+pin)
+                api.set_params(ticket_type,event,name,datetime.strftime("%d-%b at %H:%M")) 
                 api.set_to(tel)
-                api.set_from('Tike ltd') #Requested sender name
-                result = []#api.execute()
+                #api.set_from('Tike ltd') #Requested sender name
+                result = api.execute()
                 for r in result:
                     print (r.id, r.points, r.status)
                 total = total
                 st = st + 1
                 sold = sold + 1
-                perc = (sold/total)* 100
-                newticket= ticket.objects.create()
+                perc = (sold/total)* 100  
                 if autocheck=='on':
-                    newticket= ticket(phone_number = tel, email= email, Name= name, pin = pin, event = eventobj, seller= sellerobj,ticket_type= tobj,status=True)
+                    newticket=ticket.objects.create(phone_number = tel, email= '', Name= name, pin = pin, event = eventobj, seller= sellerobj,ticket_type= tobj,status=True)
                 else:
-                    newticket= ticket(phone_number = tel, email= email, Name= name, pin = pin, event = eventobj, seller= sellerobj,ticket_type= tobj)            
+                    newticket= ticket.objects.create(phone_number = tel, email= '', Name= name, pin = pin, event = eventobj, seller= sellerobj,ticket_type= tobj)            
                 newticket.save()
                 return render(request,'html/essay/sell.html',{'view' : 'Sell', 'event': event, 'action': False, 'ticket_types' : ticket_types, 'action': False,'username':username,'st':st,'income': 0,'ticketdict': ticketdict,'total': total,'sold': sold,'perc': perc,'tel': tel })
             except ApiError as e:
                 print(tel)
                 print(datetime)
                 print ('%s - %s' % (e.code, e.message))
-                return render(request,'html/essay/sell.html',{'view' : 'Sell', 'action': True, 'event': event, 'ticket_types' : ticket_types, 'action': True,'username':username,'st': st, 'income': 0,'ticketdict': ticketdict , 'total': total,'sold': sold,'perc': perc,'tel':tel})
+                return render(request,'html/essay/sell.html',{'view' : view, 'action': False, 'event': event, 'ticket_types' : ticket_types,'username':username,'st': st, 'income': 0,'ticketdict': ticketdict , 'total': total,'sold': sold,'perc': perc,'tel':e.code})
             
         
         
@@ -158,7 +157,7 @@ def sell(request):
    
 
     
-   
+        
  
             #events=list()
 '''
@@ -459,6 +458,26 @@ def tools(request):
             return render(request,'html/essay/search.html',{"err_disp":'none','active_0':'active','view':'tools','days':days,'months':months,'years':years,'sellers':sellers,'events':events})
         return render(request,'html/essay/search.html',{"err_disp":'none','active_0':'active','view':'tools','days':days,'months':months,'years':years,'sellers':sellers,'events':events})
 
+def overview(request,id):
+    try:
+        event=Show.objects.get(id=id)
+        tiktypes=tickettype.objects.filter(event=event)
+        profiles=profile.objects.filter(event=event)
+        data=[]
+        total=[0,0]
+        for prfl in profiles:
+            for tkt in tiktypes:
+                amount=ticket.objects.filter(event=event,ticket_type=tkt,seller=prfl).count()
+                data.append([prfl.seller.username,tkt.tike_type,tkt.amount,
+                    amount,amount*tkt.amount])
+                total[0]+=amount
+                total[1]+=amount*tkt.amount
+        print total
+        return render(request,'html/essay/overview.html',locals())     
+    except:
+        return HttpResponseRedirect('/')
+
+
 def get_ticket(request):
     pin_=request.GET['pin']
     obj=ticket.objects.get(Q(pin__exact = pin_.upper()))
@@ -580,3 +599,30 @@ def api_create_user(request):
     except Exception as err:
         return JsonResponse({'id':0,'stat':str(err)})
 
+
+def download_event_tickets(request,id):
+    #add authentication
+    if 'timestamp' in request.GET.keys():
+        pass #TODO: process the time stamp
+    else:
+        timestamp=0
+
+    #TODO: IMPLEMENT A BETTER ONE WITHOUT LOOPS
+    raw={}
+    c=0
+    raw['timestamp']=datetime.datetime.now()
+    raw['event']=Show.objects.get(id=id).title
+    tmp={}
+    tickets=ticket.objects.filter(event_id=id)
+    for tcket in tickets:
+        tmp[tcket.pin]={'name':tcket.Name,'scanned':tcket.status,
+        'date':tcket.date}
+    raw['tickets']=tmp
+    return JsonResponse(raw)
+
+def get_event_ids(request,n=10):
+    events=Show.objects.all()
+    result={}
+    for event in events[:n]:
+        result[event.title]=event.id
+    return JsonResponse(result)

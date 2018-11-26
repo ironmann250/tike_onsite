@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from django.contrib import admin
 from django.dispatch import receiver
 import datetime
 
@@ -15,9 +16,6 @@ class Show(models.Model):
 	supervisor = models.ForeignKey(User,default="0")
 	def __str__(self):
 		return self.title
-
-class Admin:
-	pass
 
 class profile(models.Model):
 	seller = models.ForeignKey(User)
@@ -52,8 +50,8 @@ class Admin:
 
 class ticket(models.Model):
 	phone_number = models.BigIntegerField(null = True)
-	email = models.EmailField()
-	Name = models.CharField(max_length = 100, default="0")
+	email = models.EmailField(null=True)
+	Name = models.CharField(max_length = 100, default="undef")
 	pin = models.CharField(max_length = 10)
 	event = models.ForeignKey(Show, null = True)
 	seller = models.ForeignKey(profile, null = True) #it does not show up when called
@@ -61,8 +59,12 @@ class ticket(models.Model):
 	status = models.BooleanField(default = False)
 	date=models.DateTimeField(default=str(datetime.date.today()))
 	def __str__(self):
-		return self.Name
+		return str(self.phone_number)
 
 class Admin:
 	pass
+
+class ShowAdmin(admin.ModelAdmin):
+    list_display = ('title','id')
+
 

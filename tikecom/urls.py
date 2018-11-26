@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.contrib.auth import views as auth_views
 from tickapp import views as tickapp_views
+from business import views as business_views
 from django.conf.urls.static import static
 
 urlpatterns = [
@@ -33,7 +34,16 @@ urlpatterns = [
     url(r'^ticket/',tickapp_views.get_ticket),
     url(r'^applogin/',tickapp_views.applogin),
     url(r'^result/',tickapp_views.result),
+    url(r'^create_database/',business_views.create_db),
+    url(r'^search_database/',business_views.search),
+    url(r'^check_badge/',business_views.check),
+    url(r'^edit_badge/(?P<id>.*)',business_views.edit),
+    url(r'^generate_badge/(?P<id>.*)',business_views.generate),
+    url(r'^overview/(?P<id>.*)',tickapp_views.overview),
+    url(r'^get_tickets/(?P<id>.*)',tickapp_views.download_event_tickets),
+    url(r'^get_ids/(?P<n>.*)',tickapp_views.get_event_ids),
     url(r'^get_qrcode/(?P<text>.*)',tickapp_views.render_qrcode),#security vurnelability here this can act as truthness function[explanation later]
 
 
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
+urlpatterns=urlpatterns+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,0 +1,14 @@
+{% extends 'html/badges/base.html' %}
+
+
+{% block content %}
+<form enctype="multipart/form-data" method='POST' id="form"> 
+	{% csrf_token %}
+    <div class="input-group">
+      <input type='file' id="file" name="file" placeholder="Input an excel sheet(csv)" class="form-control">
+    </div>
+      <br>
+      <input type="submit" class="btn btn-primary" value='Create Database'> 
+  </form>
+  
+{% endblock %}
