@@ -114,7 +114,7 @@ def check(request):
 	if 'q' in request.GET.keys():
 		q=request.GET['q']
 		try:
-			badge=badges.objects.get(Q(id__exact=int(q))
+			badge=badges.objects.get(Q(id__exact=int(q)))
 		except badges.DoesNotExist:
 			result={}
 			return JsonResponse(result)
