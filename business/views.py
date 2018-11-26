@@ -113,7 +113,11 @@ def edit(request,id):
 def check(request):
 	if 'q' in request.GET.keys():
 		q=request.GET['q']
-		badge=badges.objects.get(Q(id__exact=int(q))
+		try:
+			badge=badges.objects.get(Q(id__exact=int(q))
+		except badges.DoesNotExist:
+			result={}
+			return JsonResponse(result)
 		first_name=badge.First_name
 		last_name=badge.Last_namee
 		company=badge.company
