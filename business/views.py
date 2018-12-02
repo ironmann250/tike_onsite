@@ -120,8 +120,9 @@ def check(request):
 			return JsonResponse(result)
 		first_name=badge.First_name
 		last_name=badge.Last_namee
+		picture=badge.Picture.url
 		company=badge.company
-		result={'first_name': first_name, 'last_name': last_name, 'company':company}
+		result={'first_name': first_name, 'last_name': last_name, 'company':company, 'picture':picture}
 		return JsonResponse(result)
 
 	else:
