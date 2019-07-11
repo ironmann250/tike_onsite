@@ -249,15 +249,17 @@ font-size: 20px;
     color: white; /* White text color */
     background-color: #ea710d;
 }
-   
+
 .center{
     display: flex;
     flex-flow: row;
     justify-content: center;
 }
+
 @media only screen and (min-width: 768px){
     .bgonly{
         visibility: hidden;
         display: none;
     }
 }
+
